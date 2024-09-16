@@ -1,3 +1,4 @@
+import Body from "./Components/Body"
 import Head from "./Components/Head"
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
   return (
    <div>
     <Head/>
+    <Body/>
    </div>
   )
 }
