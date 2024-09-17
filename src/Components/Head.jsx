@@ -50,8 +50,8 @@ const navItems = [
            <div className='flex items-center gap-10'>
            
            {
-            navItems.map((data)=>(
-              <div className='flex items-center gap-3'>
+            navItems.map((data,i)=>(
+              <div className='flex items-center gap-3' key={i}>
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
               <p className='text-lg text-gray-500 font-medium'>{data.name}</p>
             </div>
