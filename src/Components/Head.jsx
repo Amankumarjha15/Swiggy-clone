@@ -1,6 +1,36 @@
 import React from 'react'
 
 function Head() {
+
+const navItems = [
+  {
+    name: "Swiggy Corporate",
+    image :"fi-rr-shopping-bag"
+  },
+  {
+    name: "Search",
+    image :"fi-br-search"
+  },
+  {
+    name: "Offers",
+    image : "fi-rr-badge-percent"
+  },
+  {
+    name: "Help",
+    image :"fi-rs-interrogation"
+  },
+  {
+    name: "Log In",
+    image :"fi-rr-user"
+  },
+  {
+    name: "Cart",
+    image :"fi-tr-cart-minus"
+  },
+]
+
+
+
   return (
     <div className='w-full shadow-md h-24 flex justify-center items-center'>
         
@@ -17,41 +47,17 @@ function Head() {
 
        </div>
     </div>
-           <div className='flex items-center gap-6'>
-            <div className='flex'>
-              <i class="fi fi-rr-shopping-bag"></i>
-              <p>Swiggy Corporate</p>
-            </div>
+           <div className='flex items-center gap-10'>
            
-            <div className='flex'>
-              <i class="fi fi-rr-shopping-bag"></i>
-              <p>Search</p>
+           {
+            navItems.map((data)=>(
+              <div className='flex items-center gap-3'>
+              <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
+              <p className='text-lg text-gray-500 font-medium'>{data.name}</p>
             </div>
-           
-            <div className='flex'>
-              <i class="fi fi-rr-shopping-bag"></i>
-              <p>Offers</p>
-            </div>
+            ))
+           }
             
-            <div className='flex'>
-              <i class="fi fi-rr-shopping-bag"></i>
-              <p>Help</p>
-            </div>
-           
-            <div className='flex'>
-              <i class="fi fi-rr-shopping-bag"></i>
-              <p>Sign in</p>
-            </div>
-
-            <div className='flex'>
-              <i class="fi fi-rr-shopping-bag"></i>
-              <p>Cart</p>
-            </div>
-
-            <div className='flex'>
-              <i class="fi fi-rr-shopping-bag"></i>
-              <p>Swiggy Corporate</p>
-            </div>
            
            </div>
          
