@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState , useEffect } from 'react';
+import ResturantCard from './ResturantCard';
 
 function TopResturant({Data}) {
   // console.log(Data)
@@ -45,7 +46,7 @@ function TopResturant({Data}) {
                 {  
                 Data.map((restaurant)=>(
       <div className='hover:scale-95 duration-200'> 
-          <div className='min-w-[295px] h-[182px] relative'>
+          {/* <div className='min-w-[295px] h-[182px] relative'>
 
               <img className='w-full h-full object-cover rounded-2xl' src={"https://media-assets.swiggy.com/swiggy/image/upload/"+restaurant?.info?.cloudinaryImageId} alt="" />
               <div className='bg-gradient-to-t from-black from-1% to-transparent to-40% w-full h-full rounded-2xl top-0 absolute'></div>
@@ -58,7 +59,8 @@ function TopResturant({Data}) {
               <p className='flex items-center gap-2 text-base font-semibold'><i className="fi mt-1 text-green-600 fi-ss-circle-star"></i> {restaurant?.info?.avgRating} - <span>{restaurant?.info?.sla?.slaString}</span></p>
               <p className='line-clamp-1 text-black/60 font-medium'>{restaurant?.info?.cuisines?.join(" , ")}</p>
               <p>{restaurant?.info?.locality}</p>
-          </div>
+          </div> */}
+          <ResturantCard {...restaurant}/>
 
       </div>
                 ))
