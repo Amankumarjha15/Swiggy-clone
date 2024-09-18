@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 
-function OnYourMind() {
-    const [Data,setData] = useState([]);
+function OnYourMind({Data}) {
+    // const [Data,setData] = useState([]);
     const [Value, setValue] = useState(0);
 
 
-    async function fetchData(){
-        const Data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.9690247&lng=72.8205292&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-        const result = await Data.json()
-        setData(result?.data?.cards[0]?.card?.card?.imageGridCards?.info);
-    }
-    useEffect(()=>{
-        fetchData()
-    },[])
+    // async function fetchData(){
+    //     const Data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.9690247&lng=72.8205292&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    //     const result = await Data.json()
+    //     setData(result?.data?.cards[0]?.card?.card?.imageGridCards?.info);
+    // }
+    // useEffect(()=>{
+    //     fetchData()
+    // },[])
 
 
     function handleNext(){

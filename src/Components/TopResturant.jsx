@@ -1,21 +1,21 @@
 import React from 'react'
 import { useState , useEffect } from 'react';
 
-function TopResturant() {
+function TopResturant({Data}) {
 
-  const [Data,setData] = useState([]);
+  // const [Data,setData] = useState([]);
   const [Value, setValue] = useState(0);
 
 
-  async function fetchData(){
-      const Data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.9690247&lng=72.8205292&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-      const result = await Data.json()
-      setData(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      // console.log(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-  }
-  useEffect(()=>{
-      fetchData()
-  },[])
+  // async function fetchData(){
+  //     const Data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.9690247&lng=72.8205292&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+  //     const result = await Data.json()
+  //     setData(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  //     // console.log(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  // }
+  // useEffect(()=>{
+  //     fetchData()
+  // },[])
 
 
 
@@ -25,7 +25,7 @@ function TopResturant() {
     setValue((prev)=>prev + 40)
   }
   function handlePrev() {
-    
+    setValue((prev)=>prev - 40)
   }
   return (
     <div className='mt-16  w-full'>
@@ -40,11 +40,12 @@ function TopResturant() {
                 </div>
                </div>
             </div>
-            <div className={`flex mt-4 gap-5  w-full`} style={{translate : `-${Value}%`}}>
+            <div className={`flex mt-4 gap-5  w-full duration-300`} style={{translate : `-${Value}%`}}>
                 {  
                 Data.map((restaurant)=>(
-                  <div className='min-w-[295px] h-[182px]'>
+                  <div className='min-w-[295px] h-[182px] relative'>
                   <img className='w-full h-full object-cover rounded-2xl' src={"https://media-assets.swiggy.com/swiggy/image/upload/"+restaurant?.info?.cloudinaryImageId} alt="" />
+                  <div className='bg-gradient-to-t from-black from-1% to-transparent to-40% w-full h-full rounded-2xl top-0 absolute'></div>
                   </div>
                 ))
                 }
