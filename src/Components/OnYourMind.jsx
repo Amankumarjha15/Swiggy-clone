@@ -45,7 +45,7 @@ function OnYourMind({Data}) {
                 }
             </div>
 
-            <hr className='border'/>
+            <hr className='border mt-5'/>
     </>
   )
 }
