@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function ResturantCard(restaurant) {
   return (
-    <>
+    <Link to={`/ResturantMenu/${restaurant?.info?.id}`}>
       <div className="min-w-[295px] h-[182px] relative">
         <img
           className="w-full h-full object-cover rounded-2xl"
@@ -39,7 +40,7 @@ function ResturantCard(restaurant) {
         </p>
         <p>{restaurant?.info?.locality}</p>
       </div>
-    </>
+    </Link>
   );
 }
 

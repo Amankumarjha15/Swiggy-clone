@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, Outlet } from 'react-router-dom'
 
 function Head() {
 
@@ -32,14 +33,15 @@ const navItems = [
 
 
   return (
+    <>
     <div className='w-full shadow-md h-24 flex justify-center items-center'>
         
 
   <div className='w-[70%] flex justify-between'>
     <div className='flex items-center'>
-
+           <Link to={"/"}>
               <img className='w-24' src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png" alt="" />
-
+           </Link>
        <div className='flex items-center gap-1'>
 
             <p className='font-bold border-b-2 border-black'>others</p>
@@ -69,6 +71,8 @@ const navItems = [
 
 
     </div>
+    <Outlet/>
+    </>
   )
 }
 
