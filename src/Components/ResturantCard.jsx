@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function ResturantCard(restaurant) {
+  console.log(restaurant?.link?.split("/"))
   return (
-    <Link to={`/ResturantMenu/${restaurant?.info?.id}`}>
+    <Link to={`/ResturantMenu/${restaurant?.link?.split("/").at(-1)}`}>
       <div className="min-w-[295px] h-[182px] relative">
         <img
           className="w-full h-full object-cover rounded-2xl"

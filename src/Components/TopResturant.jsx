@@ -60,7 +60,7 @@ function TopResturant({Data}) {
               <p className='line-clamp-1 text-black/60 font-medium'>{restaurant?.info?.cuisines?.join(" , ")}</p>
               <p>{restaurant?.info?.locality}</p>
           </div> */}
-          <ResturantCard {...restaurant}/>
+          <ResturantCard {...restaurant} link={restaurant?.cta?.link}/>
 
       </div>
                 ))
