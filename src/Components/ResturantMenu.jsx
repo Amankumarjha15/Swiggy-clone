@@ -7,31 +7,32 @@ function ResturantMenu() {
   // console.log(id.split("-rest"))
 
   const [resInfo, setResInfo] = useState([]);
-  const [MenuData, setMenuData] = useState([]);
+  const [MenuData, setmenuData] = useState([]);
   const [discountData, setDiscountData] = useState([]);
+  // const [currIndex, setcurrIndex] = useState(null);
 
-//   console.log(discountData)
+  // console.log(MenuData)
+
 
   async function FetchMenu() {
-    let Data = await fetch(
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65200&lng=77.16630&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`
-    );
-    let res = await Data.json();
+        
+        let Data = await fetch(
+          `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65200&lng=77.16630&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`
+        );
+        let res = await Data.json();
+        setResInfo(res?.data?.cards[2]?.card?.card?.info);
+        setDiscountData(
+          res?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
+        );
 
-    //    console.log(res?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card)
 
-    setResInfo(res?.data?.cards[2]?.card?.card?.info);
-    setDiscountData(
-      res?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
-    );
-    setMenuData(
-      res?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-        ?.card
-    );
+        let actualMenu = (res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.itemCards || data?.card?.card.categories)
+        setmenuData(actualMenu);
+       
   }
 
   useEffect(() => {
-    FetchMenu();
+    FetchMenu()
   }, []);
 
 
@@ -48,6 +49,11 @@ function handleNext (){
 }
 
 
+// function tooglefun (i){
+// console.log(i)
+// setcurrIndex( i === currIndex ? null : i )
+// }
+
 
 
 
@@ -60,7 +66,7 @@ function handleNext (){
           {resInfo.name}
         </p>
         <h1 className="font-bold pt-6 text-2xl">{resInfo?.name}</h1>
-        <div className="w-full h-[206px] bg-gradient-to-t from-slate-200/70 mt-3 px-4 pb-4 rounded-[30px]">
+        <div className="w-full h-[206px] bg-gradient-to-t from-slate-200/70 mt-3 p-4 rounded-[30px]">
           <div className="w-full h-full bg-white border-slate-200/70 rounded-[30px]">
             <div className="p-4">
               <div className="flex items-center gap-1 font-semibold">
@@ -94,21 +100,20 @@ function handleNext (){
 
             <hr className="" />
 
-            <div className="w-full">
+            {/* <div className="w-full">
               <div className="flex items-center p-4 gap-4">
                 <img
                   className="w-7"
                   src={
-                    "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_40,h_40/" +
-                    resInfo?.feeDetails?.icon
+                    "https://media-assets.swiggy.com/swiggy/image/uploa…uto,w_40,h_40/"+resInfo?.feeDetails?.icon
                   }
-                  alt=""
+                  alt="logo"
                 />
                 <span className="font-normal text-sm text-gray-500 ">
                   {resInfo?.feeDetails?.message?.replace(/<[^>]*>/g, "")}
                 </span>
               </div>
-            </div>
+            </div> */}
 
 
 
@@ -173,6 +178,41 @@ function handleNext (){
 
 
 
+            {/* <div>
+                {
+                    MenuData && MenuData.map(({card : {card : {itemCards, title}}},i)=>(
+                    <div>
+              <div className="flex justify-between ">
+                      <h1>{title} ({itemCards?.length})</h1>
+                       <i className="fi text-2xl fi-rr-angle-small-down" onClick={()=>tooglefun(i)}></i> 
+              </div>
+                    { 
+                       currIndex === i &&
+                      <div className="m-10">
+                      {
+                        itemCards.map(({card : {info}})=>(
+                          <h1>{info?.name}</h1>
+                        ))
+                      }
+                      </div>}
+                    </div>
+                 ))
+                }
+            </div> */}
+
+
+            <div>
+            {
+              MenuData && MenuData.map(({card : {card}})=>(
+                <MenuCard card={card}/>
+              ))
+            }
+            </div>
+
+
+
+
+
 
 
 
@@ -189,14 +229,13 @@ function handleNext (){
           </div>
         </div>
       </div>
-    // </div>
   );
 }
 
 
 
 function Discount({data : {info :{header , offerLogo , couponCode}}}){
-    console.log(offerLogo)
+    // console.log(offerLogo)
     return(
        <div className="flex gap-6 min-w-[328px] h-[76px] p-3 border rounded-2xl">
         <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/" + offerLogo} alt="" />
@@ -206,6 +245,66 @@ function Discount({data : {info :{header , offerLogo , couponCode}}}){
         </div>
        </div>
     )
+}
+
+
+
+function MenuCard ({card}){
+
+  let open = false;
+  
+  if (card["@type"]) {
+   open = true
+  }
+
+  const [isOpen, setisOpen] = useState(open)
+
+function toggledropdown (){
+  setisOpen((prev) => !prev)
+}
+
+
+
+if(card.itemCards){
+
+  const {title,itemCards} = card;
+
+  return(
+    <div className="mt-7 mb-7">
+    <div className="flex justify-between">
+      <h1>{title} ({itemCards?.length})</h1>
+      <i className="fi text-2xl fi-rr-angle-small-down" onClick={toggledropdown}></i>
+    </div>
+      {isOpen && <MenuDetails itemCards={itemCards}/>}
+    </div>
+  )
+} else{
+  const {title,categories} = card;
+  return(
+    <div>
+    <h1>{card.title}</h1>
+    {
+      categories.map((data)=>(
+        <MenuCard card={data}/>
+      ))
+    }
+    </div>
+  )
+}
+
+
+}
+
+function MenuDetails ({itemCards}){
+return(
+  <div className="m-5">
+    {
+      itemCards.map(({card : {info}})=>(
+        <h1>{info?.name}</h1>
+      ))
+    }
+  </div>
+)
 }
 
 

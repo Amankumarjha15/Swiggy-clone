@@ -2,7 +2,7 @@ import React from 'react'
 import { useState , useEffect } from 'react';
 import ResturantCard from './ResturantCard';
 
-function TopResturant({Data}) {
+function TopResturant({Data =[]}) {
   // console.log(Data)
 
   // const [Data,setData] = useState([]);
