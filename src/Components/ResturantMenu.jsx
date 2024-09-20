@@ -14,7 +14,7 @@ function ResturantMenu() {
     const [discountData, setDiscountData] = useState([])
 
 
-    console.log(resInfo)
+    // console.log(resInfo)
     
     
    async function FetchMenu(){
@@ -72,9 +72,9 @@ function ResturantMenu() {
                 <hr className=''/>
 
                 <div className='w-full'>
-                    <div className='flex items-center p-4'>
+                    <div className='flex items-center p-4 gap-4'>
                         <img className='w-7' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_40,h_40/" + resInfo?.feeDetails?.icon} alt="" />
-                        <span>{resInfo?.feeDetails?.message}</span>
+                        <span>{resInfo?.feeDetails?.message.replace(/<[^>]*>/g,"")}</span>
                     </div>
                 </div>
                 
