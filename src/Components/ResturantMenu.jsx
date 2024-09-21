@@ -273,7 +273,7 @@ if(card.itemCards){
     <div className="mt-7 mb-7">
     <div className="flex justify-between">
       <h1>{title} ({itemCards?.length})</h1>
-      <i className="fi text-2xl fi-rr-angle-small-down" onClick={toggledropdown}></i>
+      <i className={"fi text-2xl fi-rr-angle-small-" + (isOpen ? "up" : "down")} onClick={toggledropdown}></i>
     </div>
       {isOpen && <MenuDetails itemCards={itemCards}/>}
     </div>
