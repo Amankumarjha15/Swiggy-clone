@@ -280,7 +280,7 @@ if(card.itemCards){
     </div>
 
 
-    <hr className={"my-5 border-" + (card["@type"] ? "[10px]" : "[4px]")}/>
+    <hr className={"my-5 border-" + (card["@type"] ? "[10px]" : "[px]")}/>
 
   </>
 
@@ -304,17 +304,37 @@ if(card.itemCards){
 }
 
 function MenuDetails ({itemCards}){
+  console.log(itemCards)
 return(
-  <div className="m-5">
+  <div className="my-5">
     {
-      itemCards.map(({card : {info}})=>(
-        <h1>{info?.name}</h1>
+      itemCards.map(({card : {info :{name ,defaultPrice, price ,finalPrice, itemAttribute : {vegClassifier}, ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId}}})=>(
+      <>
+       <div className="flex justify-between w-full">
+        <div className="w-[70%]">
+          <p>{vegClassifier}</p>
+          <h1>{name}</h1>
+          <p>₹{defaultPrice /100}</p>
+          <p> <i className="fi fi-ss-star"></i> <span> {rating}({ratingCountV2}) </span> </p>
+          <p>{description}</p>
+
+        </div>
+        <div className="w-[20%]">
+          <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
+          <button>ADD</button>
+        </div>
+       </div>  
+
+       <hr className="my-5"/> 
+
+       </>   
+
+
       ))
     }
   </div>
 )
 }
-
 
 
 
