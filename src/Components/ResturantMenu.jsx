@@ -9,9 +9,10 @@ function ResturantMenu() {
   const [resInfo, setResInfo] = useState([]);
   const [MenuData, setmenuData] = useState([]);
   const [discountData, setDiscountData] = useState([]);
+  const [TopPicksData, setTopPicksData] = useState([])
   // const [currIndex, setcurrIndex] = useState(null);
 
-  // console.log(MenuData)
+  // console.log(TopPicksData)
 
 
   async function FetchMenu() {
@@ -28,6 +29,9 @@ function ResturantMenu() {
 
         let actualMenu = (res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.itemCards || data?.card?.card.categories)
         setmenuData(actualMenu);
+
+        setTopPicksData((res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.title == "Top Picks")[0])
+        // console.log((res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.title == "Top Picks")[0])
        
   }
 
@@ -129,7 +133,7 @@ function handleNext (){
           <div className="w-full">
 
             <div className="flex justify-between mt-8">
-              <p className="font-bold text-xl">Deals For You.</p>
+              <p className="font-bold text-xl">Deals For You</p>
               <div className="flex gap-3">
                 <div
                   onClick={handlePrev}
@@ -173,6 +177,65 @@ function handleNext (){
               <div className="w-full p-3 rounded-xl font-semibold text-lg bg-slate-200 text-center">Search For Dishes ?</div>
               <i className="fi fi-rr-search absolute top-3 right-4 text-xl"></i>
             </div>
+
+
+
+
+
+
+
+
+        <div>
+         { 
+         TopPicksData && 
+          <div className="w-full">
+
+            <div className="flex justify-between mt-8">
+              <p className="font-bold text-xl">{TopPicksData?.card?.card?.title}</p>
+              <div className="flex gap-3">
+                <div
+                  onClick={handlePrev}
+                  className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
+                >
+                  <i className="fi text-2xl mt-1 fi-rr-arrow-small-left"></i>
+                </div>
+                <div
+                  onClick={handleNext}
+                  className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
+                >
+                  <i className="fi text-2xl mt-1 fi-rr-arrow-small-right"></i>
+                </div>
+              </div>
+            </div>
+     
+            <div className="flex gap-4 mt-5 overflow-hidden">
+            {
+              TopPicksData && 
+                TopPicksData.card?.card?.carousel.map(({creativeId , dish : { info : {defaultPrice , price}}}) =>{ 
+                  return(
+                    <div className="min-w-[400px] h-[405px] relative">
+                      <img className="w-full h-full" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/" + creativeId} alt="" />
+                      <div className="absolute bottom-4 text-white flex justify-between w-full px-5">
+                        <p className="font-bold">₹ {defaultPrice /100 || price /100}</p>
+                        <button className="px-10 py-2 font-bold text-green-700 bg-white rounded-xl">ADD</button>
+                      </div>
+                    </div>
+                )})
+            }
+
+           </div>
+
+
+            </div>
+         }
+        </div>
+
+
+
+
+
+
+
 
 
 
@@ -280,7 +343,7 @@ if(card.itemCards){
     </div>
 
 
-    <hr className={"my-5 border-" + (card["@type"] ? "[10px]" : "[px]")}/>
+    <hr className={"my-5  border-" + (card["@type"] ? "[30px]" : "[10px]")}/>
 
   </>
 
@@ -304,52 +367,66 @@ if(card.itemCards){
 }
 
 function MenuDetails ({itemCards}){
-  console.log(itemCards)
-return(
-  <div className="my-5">
+  // console.log(itemCards)
+  return(
+    <div className="my-5">
     {
-      itemCards.map(({card : {info :{name ,defaultPrice, price ,finalPrice, itemAttribute : {vegClassifier}, ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId}}})=>{ 
-        
-        const [isMore, setisMore] = useState(false)
-        
-        
-        
-        return(
-      <>
-       <div className="flex justify-between w-full min-h-[182px]">
-        <div className="w-[70%]">
-          {/* {
-            vegClassifier === "VEG" ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" alt="" /> : <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png" alt="" />
-          } */}
-          <img className="w-4" src={vegClassifier === "VEG" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png"} alt="" />
-          <h1 className="font-bold text-lg">{name}</h1>
-          <p className="font-bold text-lg">₹{defaultPrice /100 || price /100 || finalPrice /100}</p>
-          <div className="flex items-center gap-1"> <i className="fi mt-1 fi-ss-star text-green-700"></i> <span> {rating}({ratingCountV2}) </span> </div>
-          <div className="gap-2">
-            <span className={isMore ? "" : "line-clamp-2"}>{description}</span> 
-            {
-               description.length > 145 && <button className="font-bold" onClick={()=>{setisMore(!isMore)}}>{isMore ? "less" : "more"}</button>
-            }
-            </div>
-          
-
-        </div>
-        <div className="w-[20%] relative h-full">
-          <img className="rounded-2xl w-[156px] h-[144px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
-          <button className="bg-white absolute bottom-[-20px] left-3 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-green-700">ADD</button>
-        </div>
-       </div>  
-
-       <hr className="my-5"/> 
-
-       </>   
-
-
-      )})
+      itemCards.map(({card : {info}})=>(
+        <MenuDetailsCard info={info} />
+      ))
     }
   </div>
 )
 }
+
+
+
+function MenuDetailsCard({info :{name ,defaultPrice, price ,finalPrice, itemAttribute : {vegClassifier}, ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId , isVeg}}) { 
+        
+  const [isMore, setisMore] = useState(false)
+  
+  
+  
+  return(
+<>
+ <div className="flex justify-between w-full min-h-[182px]">
+  <div className="w-[70%]">
+    {/* {
+      vegClassifier === "VEG" ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" alt="" /> : <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png" alt="" />
+    } */}
+    <img className="w-4" src={isVeg == 1 || vegClassifier === "VEG" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png"} alt="" />
+    <h1 className="font-bold text-lg">{name}</h1>
+    <p className="font-bold text-lg">₹{defaultPrice /100 || price /100 || finalPrice /100}</p>
+
+     {
+
+      rating && <div className="flex items-center gap-1"> <i className="fi mt-1 fi-ss-star text-green-700"></i> <span> {rating}({ratingCountV2}) </span> </div>
+
+     }
+
+
+
+    <div className="gap-2">
+      <span className={isMore ? "" : "line-clamp-2"}>{description}</span> 
+      {   description &&
+         description.length > 145 && <button className="font-bold" onClick={()=>{setisMore(!isMore)}}>{isMore ? "less" : "more"}</button>
+      }
+      </div>
+    
+
+  </div>
+  <div className="w-[20%] relative h-full">
+    <img className="rounded-2xl w-[156px] h-[144px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
+    <button className="bg-white absolute bottom-[-20px] left-3 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-green-700">ADD</button>
+  </div>
+ </div>  
+
+ <hr className="my-5"/> 
+
+ </>   
+
+
+)}
 
 
 
