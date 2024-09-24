@@ -35,8 +35,8 @@ const navItems = [
 
 
 
-async function searchResultFun(){
-  const res = await fetch("https://www.swiggy.com/dapi/misc/place-autocomplete?input=mumbai")
+async function searchResultFun(value){
+  const res = await fetch(`https://www.swiggy.com/dapi/misc/place-autocomplete?input=${value}`)
   const data = await res.json();
   console.log(data)
   setsearchResult(data?.data)
@@ -54,8 +54,18 @@ async function searchResultFun(){
 
     <div className='w-full'>
     <div onClick={handleVisibility} className={'absolute w-full z-30 h-full bg-black/50 ' + (Visible ? " visible" : " invisible")}></div>
-    <div className={'bg-white z-40 absolute w-[40%] h-full duration-500 ' + (Visible ? "left-0" : "-left-[100%]")}>
-        <input type="text" className='border border-gray-700 p-5 focus:outline-none focus:shadow-lg' onChange={searchResultFun} />
+    <div className={'bg-white z-40 p-5 absolute w-[40%] h-full duration-500 ' + (Visible ? "left-0" : "-left-[100%]")}>
+        <input type="text" className='border border-gray-700 p-5 focus:outline-none focus:shadow-lg' onChange={(e)=>searchResultFun(e.target.value)} />
+        <div>
+          <ul>
+            {
+              searchResult &&
+              searchResult.map((data)=>(
+                <li>{data?.structured_formatting?.main_text} <p className='text-gray-500'>{data?.structured_formatting?.secondary_text}</p></li>
+              ))
+            }
+          </ul>
+        </div>
     </div>
     </div>
 
