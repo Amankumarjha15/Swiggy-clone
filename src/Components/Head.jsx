@@ -3,7 +3,8 @@ import { Link, Outlet } from 'react-router-dom'
 import { Visibility } from '../context/contextApi'
 
 function Head() {
-  const {Visible , setVisible} = useContext(Visibility)
+  const {Visible , setVisible} = useContext(Visibility);
+  const [searchResult, setsearchResult] = useState([]);
 
 const navItems = [
   {
@@ -34,6 +35,14 @@ const navItems = [
 
 
 
+async function searchResultFun(){
+  const res = await fetch("https://www.swiggy.com/dapi/misc/place-autocomplete?input=mumbai")
+  const data = await res.json();
+  console.log(data)
+  setsearchResult(data?.data)
+}
+
+
   
   function handleVisibility (){
     setVisible(prev => !prev)
@@ -46,7 +55,7 @@ const navItems = [
     <div className='w-full'>
     <div onClick={handleVisibility} className={'absolute w-full z-30 h-full bg-black/50 ' + (Visible ? " visible" : " invisible")}></div>
     <div className={'bg-white z-40 absolute w-[40%] h-full duration-500 ' + (Visible ? "left-0" : "-left-[100%]")}>
-        
+        <input type="text" className='border border-gray-700 p-5 focus:outline-none focus:shadow-lg' onChange={searchResultFun} />
     </div>
     </div>
 
@@ -59,7 +68,7 @@ const navItems = [
   <div className='w-[70%] flex justify-between'>
     <div className='flex items-center'>
            <Link to={"/"}>
-              <img className='w-24' src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png" alt="" />
+              <img className='w-24 hover:scale-105 duration-300' src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png" alt="" />
            </Link>
        <div className='flex items-center gap-1' onClick={handleVisibility}>
 
