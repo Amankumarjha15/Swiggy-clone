@@ -123,6 +123,7 @@ function handleNext (){
 
 
         </div>
+        </div>
 
 
 
@@ -289,7 +290,7 @@ function handleNext (){
 
 
 
-          </div>
+          
         </div>
       </div>
   );
