@@ -2,7 +2,7 @@ import React from 'react'
 import { useState , useEffect } from 'react';
 import ResturantCard from './ResturantCard';
 
-function TopResturant({Data =[]}) {
+function TopResturant({Data =[] , title}) {
   // console.log(Data)
 
   // const [Data,setData] = useState([]);
@@ -32,7 +32,7 @@ function TopResturant({Data =[]}) {
   return (
     <div className='mt-10  w-full'>
           <div className='flex justify-between mt-5'>
-                <p className='font-bold text-2xl'>Top restaurant chains in Delhi</p>
+                <p className='font-bold text-2xl'>{title}</p>
                <div className='flex gap-3'>
                <div onClick={handlePrev} className='cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center'>
                     <i className="fi text-2xl mt-1 fi-rr-arrow-small-left"></i>

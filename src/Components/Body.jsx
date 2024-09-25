@@ -11,6 +11,9 @@ function Body() {
   const [onYourMind, setonYourMind] = useState([])
   const [topResturant, setTopResturant] = useState([])
 
+  const [TopResTitle, setTopResTitle] = useState("")
+  const [OnlineTitle, setOnlineTitle] = useState("")
+
 
   const {Coord : {lat , lng}} = useContext(Coordinates);
 
@@ -22,6 +25,9 @@ function Body() {
     // console.log(result)
     setonYourMind(result?.data?.cards[0]?.card?.card?.imageGridCards?.info);
     // console.log(result?.data?.cards[0]?.card?.card?.imageGridCards?.info)
+    // console.log(result?.data?.cards[2]?.card?.card?.title)
+    setOnlineTitle(result?.data?.cards[2]?.card?.card?.title);
+    setTopResTitle(result?.data?.cards[1]?.card?.card?.header?.title);
 }
 useEffect(()=>{
     fetchData()
@@ -32,8 +38,8 @@ useEffect(()=>{
     <div className='w-full mt-3'>
         <div className='w-[80%] mt-3 mx-auto overflow-hidden'>
         <OnYourMind Data={onYourMind}/>
-        <TopResturant Data={topResturant}/>
-        <OnlineFoodDelhivery Data={topResturant}/>
+        <TopResturant Data={topResturant} title={TopResTitle}/>
+        <OnlineFoodDelhivery Data={topResturant} title={OnlineTitle}/>
         </div>
     </div>
   )

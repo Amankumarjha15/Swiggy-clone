@@ -42,7 +42,7 @@ const navItems = [
 async function searchResultFun(value){
   const res = await fetch(`https://www.swiggy.com/dapi/misc/place-autocomplete?input=${value}`)
   const data = await res.json();
-  console.log(data)
+  // console.log(data)
   setsearchResult(data?.data)
 }
 
@@ -101,7 +101,7 @@ async function fetchLatAndLng(id){
        <div className='flex items-center' onClick={handleVisibility}>
 
             <p className=""> <span className='font-bold border-b-2 border-black'>others</span></p>
-            <p className='text-xs opacity-75 line-clamp-1 mt-1 ml-2'>{Address}</p>
+            <p className='text-xs opacity-75 line-clamp-1 mt-1 ml-2 max-w-[300px]'>{Address}</p>
             <i class="fi text-orange-500 text-2xl mt-2 fi-rs-angle-small-down"></i>
 
        </div>
