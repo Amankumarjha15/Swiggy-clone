@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Coordinates } from "../context/contextApi";
 
 function ResturantMenu() {
   const { id } = useParams();
@@ -10,6 +11,9 @@ function ResturantMenu() {
   const [MenuData, setmenuData] = useState([]);
   const [discountData, setDiscountData] = useState([]);
   const [TopPicksData, setTopPicksData] = useState([])
+
+  const {Coord : {lat , lng}} = useContext(Coordinates);
+
   // const [currIndex, setcurrIndex] = useState(null);
 
   // console.log(TopPicksData)
@@ -17,9 +21,7 @@ function ResturantMenu() {
 
   async function FetchMenu() {
         
-        let Data = await fetch(
-          `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65200&lng=77.16630&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`
-        );
+        let Data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`);
         let res = await Data.json();
         setResInfo(res?.data?.cards[2]?.card?.card?.info);
         setDiscountData(
@@ -37,7 +39,7 @@ function ResturantMenu() {
 
   useEffect(() => {
     FetchMenu()
-  }, []);
+  }, [lat , lng]);
 
 
 
@@ -395,7 +397,7 @@ function MenuDetailsCard({info :{name ,defaultPrice, price ,finalPrice, itemAttr
     {/* {
       vegClassifier === "VEG" ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" alt="" /> : <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png" alt="" />
     } */}
-    <img className="w-4" src={vegClassifier && isVeg == 1 || vegClassifier === "VEG" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png"} alt="" />
+    <img className="w-4" src={isVeg && vegClassifier && isVeg == 1 || vegClassifier === "VEG" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png"} alt="" />
     <h1 className="font-bold text-lg">{name}</h1>
     <p className="font-bold text-lg">₹{defaultPrice /100 || price /100 || finalPrice /100}</p>
 

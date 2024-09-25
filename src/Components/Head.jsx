@@ -8,6 +8,7 @@ function Head() {
   const {setCoord} = useContext(Coordinates);
 
   const [searchResult, setsearchResult] = useState([]);
+  const [Address, setAddress] = useState("");
 
 const navItems = [
   {
@@ -41,7 +42,7 @@ const navItems = [
 async function searchResultFun(value){
   const res = await fetch(`https://www.swiggy.com/dapi/misc/place-autocomplete?input=${value}`)
   const data = await res.json();
-  // console.log(data)
+  console.log(data)
   setsearchResult(data?.data)
 }
 
@@ -53,8 +54,10 @@ async function fetchLatAndLng(id){
     lat : data?.data[0]?.geometry?.location.lat ,
     lng : data?.data[0]?.geometry?.location.lng
   })
+  setAddress(data?.data[0].formatted_address)
   // console.log(data?.data[0]?.geometry?.location.lat)
   // console.log(data?.data[0]?.geometry?.location.lng)
+  // console.log(data?.data[0])
 }
 
 
@@ -90,14 +93,15 @@ async function fetchLatAndLng(id){
     <div className='w-full shadow-md h-24 flex justify-center items-center z-10 top-0 bg-white sticky'>
         
 
-  <div className='w-[70%] flex justify-between'>
+  <div className='w-[85%] flex justify-between'>
     <div className='flex items-center'>
            <Link to={"/"}>
               <img className='w-24 hover:scale-105 duration-300' src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png" alt="" />
            </Link>
-       <div className='flex items-center gap-1' onClick={handleVisibility}>
+       <div className='flex items-center' onClick={handleVisibility}>
 
-            <p className='font-bold border-b-2 border-black'>others</p>
+            <p className=""> <span className='font-bold border-b-2 border-black'>others</span></p>
+            <p className='text-xs opacity-75 line-clamp-1 mt-1 ml-2'>{Address}</p>
             <i class="fi text-orange-500 text-2xl mt-2 fi-rs-angle-small-down"></i>
 
        </div>
