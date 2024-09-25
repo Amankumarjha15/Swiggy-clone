@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import { Visibility } from '../context/contextApi'
+import { Coordinates, Visibility } from '../context/contextApi'
 
 function Head() {
   const {Visible , setVisible} = useContext(Visibility);
+  
+  const {setCoord} = useContext(Coordinates);
+
   const [searchResult, setsearchResult] = useState([]);
 
 const navItems = [
@@ -38,8 +41,20 @@ const navItems = [
 async function searchResultFun(value){
   const res = await fetch(`https://www.swiggy.com/dapi/misc/place-autocomplete?input=${value}`)
   const data = await res.json();
-  console.log(data)
+  // console.log(data)
   setsearchResult(data?.data)
+}
+
+async function fetchLatAndLng(id){
+  // console.log(id)
+  const res = await fetch(`https://www.swiggy.com/dapi/misc/address-recommend?place_id=${id}`)
+  const data = await res.json();
+  setCoord({
+    lat : data?.data[0]?.geometry?.location.lat ,
+    lng : data?.data[0]?.geometry?.location.lng
+  })
+  // console.log(data?.data[0]?.geometry?.location.lat)
+  // console.log(data?.data[0]?.geometry?.location.lng)
 }
 
 
@@ -61,7 +76,7 @@ async function searchResultFun(value){
             {
               searchResult &&
               searchResult.map((data)=>(
-                <li>{data?.structured_formatting?.main_text} <p className='text-gray-500'>{data?.structured_formatting?.secondary_text}</p></li>
+                <li onClick={()=>fetchLatAndLng(data.place_id)}>{data?.structured_formatting?.main_text} <p className='text-gray-500'>{data?.structured_formatting?.secondary_text}</p></li>
               ))
             }
           </ul>

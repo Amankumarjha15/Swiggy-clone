@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import OnYourMind from './onYourMind';
 import TopResturant from './TopResturant';
 import ResturantCard from './ResturantCard';
 import OnlineFoodDelhivery from './OnlineFoodDelhivery';
+import { Coordinates } from '../context/contextApi';
 
 
 function Body() {
@@ -10,9 +11,12 @@ function Body() {
   const [onYourMind, setonYourMind] = useState([])
   const [topResturant, setTopResturant] = useState([])
 
+
+  const {Coord : {lat , lng}} = useContext(Coordinates);
+
   
   async function fetchData(){
-    const Data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65200&lng=77.16630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const Data = await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`)
     const result = await Data.json()
     setTopResturant(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     // console.log(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
@@ -20,7 +24,7 @@ function Body() {
 }
 useEffect(()=>{
     fetchData()
-},[])
+},[lat , lng])
 
 
   return (
