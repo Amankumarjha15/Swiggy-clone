@@ -47,6 +47,7 @@ async function searchResultFun(value){
 }
 
 async function fetchLatAndLng(id){
+  handleVisibility();
   // console.log(id)
   const res = await fetch(`https://www.swiggy.com/dapi/misc/address-recommend?place_id=${id}`)
   const data = await res.json();
@@ -71,18 +72,30 @@ async function fetchLatAndLng(id){
     <div className='relative w-full'>
 
     <div className='w-full'>
-    <div onClick={handleVisibility} className={'absolute w-full z-30 h-full bg-black/50 ' + (Visible ? " visible" : " invisible")}></div>
+    <div onClick={handleVisibility} className={'absolute duration-0 w-full z-30 h-full bg-black/50 ' + (Visible ? " visible" : " invisible")}></div>
     <div className={'bg-white z-40 p-5 absolute w-[40%] h-full duration-500 ' + (Visible ? "left-0" : "-left-[100%]")}>
-        <input type="text" className='border border-gray-700 p-5 focus:outline-none focus:shadow-lg' onChange={(e)=>searchResultFun(e.target.value)} />
+        <div className='mx-10 flex flex-col gap-8'>
+          <i onClick={handleVisibility} className="fi font-bold text-4xl fi-br-cross"></i>
+        <input type="text" className='border border-gray-700 p-5 focus:outline-none focus:shadow-lg hover:shadow-lg' onChange={(e)=>searchResultFun(e.target.value)} />
         <div>
-          <ul>
+          <ul className='border border-gray-600 shadow-2xl'>
             {
               searchResult &&
               searchResult.map((data)=>(
-                <li onClick={()=>fetchLatAndLng(data.place_id)}>{data?.structured_formatting?.main_text} <p className='text-gray-500'>{data?.structured_formatting?.secondary_text}</p></li>
+                <div className='cursor-pointer ' onClick={()=>fetchLatAndLng(data.place_id)}>
+                  <div className='flex gap-5 m-7 border-b border-gray-300'>
+                      <i className="fi mt-1 fi-sr-location-arrow"></i>
+                      <li className='mb-3'>
+                      {data?.structured_formatting?.main_text}
+                      <p className='text-gray-500'>{data?.structured_formatting?.secondary_text}
+                      </p>
+                      </li>
+                  </div>
+                </div>
               ))
             }
           </ul>
+        </div>
         </div>
     </div>
     </div>

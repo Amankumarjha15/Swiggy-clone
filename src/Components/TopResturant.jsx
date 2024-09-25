@@ -44,6 +44,7 @@ function TopResturant({Data =[] , title}) {
             </div>
             <div className={`flex mt-4 gap-5  w-full duration-300`} style={{translate : `-${Value}%`}}>
                 {  
+                Data &&
                 Data.map((restaurant)=>(
       <div className='hover:scale-95 duration-200'> 
           {/* <div className='min-w-[295px] h-[182px] relative'>

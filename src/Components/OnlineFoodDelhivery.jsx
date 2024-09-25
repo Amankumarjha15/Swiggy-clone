@@ -6,11 +6,13 @@ function OnlineFoodDelhivery({ Data , title}) {
   return (
     <>
       <div>
-        <div className="my-5">
+        <div className="my-8">
         <p className='font-bold text-2xl'>{title}</p>
         </div>
         <div className="grid grid-cols-4 gap-3">
-        {Data.map((restaurant) => (
+        {
+        Data &&
+        Data.map((restaurant) => (
           <div className="hover:scale-95 duration-200">
             <ResturantCard {...restaurant} link={restaurant?.cta?.link}/>
           </div>
