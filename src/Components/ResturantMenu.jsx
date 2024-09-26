@@ -398,7 +398,13 @@ function MenuDetailsCard({info}) {
 
 
   function HandleAddToCart(){
-      setcartData((prev)=>[...prev , info])
+      const isAdded = cartData.find((data)=> data.id === info.id);
+
+      if(!isAdded){
+        setcartData((prev)=>[...prev , info])
+      }else{
+        alert("Item Is Already Added In Your Cart")
+      }
   }
   
   
