@@ -39,6 +39,7 @@ function OnYourMind({Data}) {
             </div>
             <div style={{translate : `-${Value}%`}} className={`flex mt-4 duration-300`}>
                 {
+                    Data &&
                     Data.map((item)=>(
                         <img key={item.id} className='w-40' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/${item.imageId}`} alt="" />
                     ))
