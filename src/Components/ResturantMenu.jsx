@@ -402,6 +402,7 @@ function MenuDetailsCard({info}) {
 
       if(!isAdded){
         setcartData((prev)=>[...prev , info])
+        localStorage.setItem("cartData" , JSON.stringify([...cartData , info]))
       }else{
         alert("Item Is Already Added In Your Cart")
       }

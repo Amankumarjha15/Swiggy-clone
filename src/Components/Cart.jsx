@@ -12,6 +12,7 @@ function Cart() {
     let newArr=[...cartData]
     newArr.splice(i,1)
     setcartData(newArr)
+    localStorage.setItem("cartData" , JSON.stringify(newArr))
   }
 
 

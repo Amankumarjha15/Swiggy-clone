@@ -3,7 +3,7 @@ import Body from "./Components/Body"
 import Head from "./Components/Head"
 import ResturantMenu from "./Components/ResturantMenu"
 import { CartContext, Coordinates, Visibility } from "./context/contextApi"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Cart from "./Components/Cart"
 
 function App() {
@@ -11,6 +11,15 @@ function App() {
   const [Visible, setVisible] = useState(false);
   const [Coord, setCoord] = useState({lat : 28.65200 , lng : 77.16630})
   const [cartData, setcartData] = useState([])
+
+  function getDataFromLocalStorge(){
+    let data = JSON.parse(localStorage.getItem("cartData")) || []
+    setcartData(data);
+  }
+
+  useEffect(()=>{
+    getDataFromLocalStorge()
+  },[])
 
   return (
     <CartContext.Provider value={{cartData , setcartData}}>
