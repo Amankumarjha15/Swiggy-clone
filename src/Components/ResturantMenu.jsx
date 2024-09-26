@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Coordinates } from "../context/contextApi";
+import { CartContext, Coordinates } from "../context/contextApi";
 
 function ResturantMenu() {
   const { id } = useParams();
@@ -384,9 +384,22 @@ function MenuDetails ({itemCards}){
 
 
 
-function MenuDetailsCard({info :{name ,defaultPrice, price ,finalPrice, itemAttribute : {vegClassifier}, ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId , isVeg}}) { 
+function MenuDetailsCard({info}) { 
         
+  const {name ,defaultPrice, price ,finalPrice, itemAttribute : {vegClassifier}, ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId , isVeg} = info;
+
+
+
+
   const [isMore, setisMore] = useState(false)
+
+  const {cartData , setcartData} = useContext(CartContext);
+  
+
+
+  function HandleAddToCart(){
+      setcartData((prev)=>[...prev , info])
+  }
   
   
   
@@ -420,7 +433,7 @@ function MenuDetailsCard({info :{name ,defaultPrice, price ,finalPrice, itemAttr
   </div>
   <div className="w-[20%] relative h-full">
     <img className="rounded-2xl w-[156px] h-[144px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
-    <button className="bg-white absolute bottom-[-20px] left-3 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-green-700">ADD</button>
+    <button onClick={HandleAddToCart} className="bg-white absolute bottom-[-20px] left-3 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-green-700">ADD</button>
   </div>
  </div>  
 

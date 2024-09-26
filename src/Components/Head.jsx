@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import { Coordinates, Visibility } from '../context/contextApi'
+import { CartContext, Coordinates, Visibility } from '../context/contextApi'
 
 function Head() {
   const {Visible , setVisible} = useContext(Visibility);
+  const {cartData , setcartData} = useContext(CartContext);
   
   const {setCoord} = useContext(Coordinates);
 
@@ -126,6 +127,9 @@ async function fetchLatAndLng(id){
               <div className='flex items-center gap-3' key={i}>
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
               <p className='text-lg text-gray-500 font-medium'>{data.name}</p>
+              {
+               data.name === "Cart" && <p>{cartData.length}</p> 
+              }
             </div>
             ))
            }

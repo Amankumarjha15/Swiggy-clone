@@ -9,7 +9,7 @@ function App() {
 
   const [Visible, setVisible] = useState(false);
   const [Coord, setCoord] = useState({lat : 28.65200 , lng : 77.16630})
-  const [cartData, setcartData] = useState([{}])
+  const [cartData, setcartData] = useState([])
 
   return (
     <CartContext.Provider value={{cartData , setcartData}}>
@@ -20,8 +20,7 @@ function App() {
                                   <Route path="/" element={<Head/>}>
                                   <Route path="/" element={<Body/>}/>
                                   <Route path="/ResturantMenu/:id" element={<ResturantMenu/>}/>
-                                  </Route>
-                                  
+                                  </Route>  
                               </Routes>
                       </div>
               </Visibility.Provider>
