@@ -14,27 +14,33 @@ function Head() {
 const navItems = [
   {
     name: "Swiggy Corporate",
-    image :"fi-rr-shopping-bag"
+    image :"fi-rr-shopping-bag",
+    path : "/corporate"
   },
   {
     name: "Search",
-    image :"fi-br-search"
+    image :"fi-br-search",
+    path : "/search"
   },
   {
     name: "Offers",
-    image : "fi-rr-badge-percent"
+    image : "fi-rr-badge-percent",
+    path : "/offers"
   },
   {
     name: "Help",
-    image :"fi-rs-interrogation"
+    image :"fi-rs-interrogation",
+    path : "/help"
   },
   {
     name: "Log In",
-    image :"fi-rr-user"
+    image :"fi-rr-user",
+    path : "/login"
   },
   {
     name: "Cart",
-    image :"fi-tr-cart-minus"
+    image :"fi-tr-cart-minus",
+    path : "/cart"
   },
 ]
 
@@ -123,7 +129,8 @@ async function fetchLatAndLng(id){
            <div className='flex items-center gap-10'>
            
            {
-            navItems.map((data,i)=>(
+             navItems.map((data,i)=>(
+              <Link to={data.path}>
               <div className='flex items-center gap-3' key={i}>
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
               <p className='text-lg text-gray-500 font-medium'>{data.name}</p>
@@ -131,7 +138,9 @@ async function fetchLatAndLng(id){
                data.name === "Cart" && <p>{cartData.length}</p> 
               }
             </div>
+            </Link>
             ))
+            
            }
             
            
