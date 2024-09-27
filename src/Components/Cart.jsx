@@ -28,6 +28,11 @@ let totalPrice = cartData.reduce((acc , curVal)=> (acc + curVal.price /100 || cu
     localStorage.setItem("cartData" , JSON.stringify(newArr))
   }
 
+  function handleClearCart(){
+    setcartData([])
+    localStorage.setItem("cartData" , JSON.stringify([]));
+  }
+
 
   if(cartData.length === 0){
     return (
@@ -35,7 +40,7 @@ let totalPrice = cartData.reduce((acc , curVal)=> (acc + curVal.price /100 || cu
             <div className="w-[70%] h-[50vh] mx-auto flex flex-col items-center justify-center">
                 <h1>Order krle bhai bhukha marega kya....</h1>
                 <Link to={"/"}>
-                <button className='px-10 py-5 m-5 bg-green-700'>Yha se order krke bhai</button>
+                <button className='px-10 py-5 m-5 bg-green-700'>Yha se order krle bhai</button>
                 </Link>
             </div>
         </div>
@@ -62,6 +67,7 @@ let totalPrice = cartData.reduce((acc , curVal)=> (acc + curVal.price /100 || cu
             ))
            }
            <h1>Total - ₹{totalPrice}</h1>
+           <button onClick={handleClearCart} className='p-6 m-5 bg-green-700 text-white'>Clear Cart</button>
         </div>
     </div>
   )
