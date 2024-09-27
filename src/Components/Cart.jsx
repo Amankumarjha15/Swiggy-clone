@@ -20,17 +20,26 @@ let totalPrice = cartData.reduce((acc , curVal)=> (acc + curVal.price /100 || cu
 
 
 
+// if(cartData.length === 0){
+//   localStorage.setItem("resInfo" , JSON.stringify([]));
+// }
 
-  function handleRemove(i){
+function handleRemove(i){
+  if (cartData.length > 1) {
     let newArr=[...cartData]
     newArr.splice(i,1)
     setcartData(newArr)
     localStorage.setItem("cartData" , JSON.stringify(newArr))
+  } else {
+    handleClearCart()
+  }
   }
 
   function handleClearCart(){
     setcartData([])
     localStorage.setItem("cartData" , JSON.stringify([]));
+    localStorage.setItem("resInfo" , JSON.stringify([]));
+
   }
 
 

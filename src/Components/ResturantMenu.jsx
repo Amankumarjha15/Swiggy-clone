@@ -400,10 +400,15 @@ function MenuDetailsCard({info , resInfo}) {
   function HandleAddToCart(){
       const isAdded = cartData.find((data)=> data.id === info.id);
       console.log(resInfo)
-
+      let resInfoLocalStorage = JSON.parse(localStorage.getItem("resInfo")) || []
       if(!isAdded){
-        setcartData((prev)=>[...prev , info])
-        localStorage.setItem("cartData" , JSON.stringify([...cartData , info]))
+        if (resInfoLocalStorage.name === resInfo.name || resInfoLocalStorage.length === 0) {
+          setcartData((prev)=>[...prev , info])
+          localStorage.setItem("cartData" , JSON.stringify([...cartData , info]))
+          localStorage.setItem("resInfo" , JSON.stringify(resInfo))
+        } else {
+          alert("Selected item is from unother resturant please clear the cart or select items from this " + resInfoLocalStorage.name + " only")
+        }
       }else{
         alert("Item Is Already Added In Your Cart")
       }
