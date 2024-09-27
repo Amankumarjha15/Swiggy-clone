@@ -28,7 +28,7 @@ function Body() {
     setResultData(result?.data?.cards[0]?.card?.card?.title)
 
     setTopResturant(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    console.log(result)
+    // console.log(result)
     setonYourMind(result?.data?.cards[0]?.card?.card?.imageGridCards?.info);
     // console.log(result?.data?.cards[0]?.card?.card?.imageGridCards?.info)
     // console.log(result?.data?.cards[2]?.card?.card?.title)

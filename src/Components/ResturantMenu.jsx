@@ -270,7 +270,7 @@ function handleNext (){
             <div>
             {
               MenuData && MenuData.map(({card : {card}})=>(
-                <MenuCard card={card}/>
+                <MenuCard card={card} resInfo={resInfo}/>
               ))
             }
             </div>
@@ -315,7 +315,7 @@ function Discount({data : {info :{header , offerLogo , couponCode}}}){
 
 
 
-function MenuCard ({card}){
+function MenuCard ({card , resInfo}){
 
   let open = false;
   
@@ -342,7 +342,7 @@ if(card.itemCards){
       <h1 className={"font-bold text-" + (card["@type"] ? "xl" : "base")}>{title} ({itemCards?.length})</h1>
       <i className={"fi text-2xl fi-rr-angle-small-" + (isOpen ? "up" : "down")} onClick={toggledropdown}></i>
     </div>
-      {isOpen && <MenuDetails itemCards={itemCards}/>}
+      {isOpen && <MenuDetails itemCards={itemCards} resInfo={resInfo}/>}
     </div>
 
 
@@ -359,7 +359,7 @@ if(card.itemCards){
     <h1 className="font-bold text-xl">{card.title}</h1>
     {
       categories.map((data)=>(
-        <MenuCard card={data}/>
+        <MenuCard card={data} resInfo={resInfo}/>
       ))
     }
     </div>
@@ -369,13 +369,13 @@ if(card.itemCards){
 
 }
 
-function MenuDetails ({itemCards}){
+function MenuDetails ({itemCards , resInfo}){
   // console.log(itemCards)
   return(
     <div className="my-5">
     {
       itemCards.map(({card : {info}})=>(
-        <MenuDetailsCard info={info} />
+        <MenuDetailsCard info={info} resInfo={resInfo}/>
       ))
     }
   </div>
@@ -384,7 +384,7 @@ function MenuDetails ({itemCards}){
 
 
 
-function MenuDetailsCard({info}) { 
+function MenuDetailsCard({info , resInfo}) { 
         
   const {name ,defaultPrice, price ,finalPrice, itemAttribute : {vegClassifier}, ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId , isVeg} = info;
 
@@ -399,6 +399,7 @@ function MenuDetailsCard({info}) {
 
   function HandleAddToCart(){
       const isAdded = cartData.find((data)=> data.id === info.id);
+      console.log(resInfo)
 
       if(!isAdded){
         setcartData((prev)=>[...prev , info])

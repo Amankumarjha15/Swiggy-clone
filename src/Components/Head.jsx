@@ -85,12 +85,12 @@ async function fetchLatAndLng(id){
           <i onClick={handleVisibility} className="fi font-bold text-4xl fi-br-cross"></i>
         <input type="text" className='border border-gray-700 p-5 focus:outline-none focus:shadow-lg hover:shadow-lg' onChange={(e)=>searchResultFun(e.target.value)} />
         <div>
-          <ul className='border border-gray-600 shadow-2xl'>
+          <ul className='border border-gray-600 p-7 shadow-2xl'>
             {
               searchResult &&
               searchResult.map((data)=>(
                 <div className='cursor-pointer ' onClick={()=>fetchLatAndLng(data.place_id)}>
-                  <div className='flex gap-5 m-7 border-b border-gray-300'>
+                  <div className='flex gap-5 border-b m-5 border-gray-300'>
                       <i className="fi mt-1 fi-sr-location-arrow"></i>
                       <li className='mb-3'>
                       {data?.structured_formatting?.main_text}
@@ -135,6 +135,7 @@ async function fetchLatAndLng(id){
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
               <p className='text-lg text-gray-500 font-medium'>{data.name}</p>
               {
+               cartData == 0 ? "" :
                data.name === "Cart" && <p>{cartData.length}</p> 
               }
             </div>
