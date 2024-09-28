@@ -423,7 +423,7 @@ function MenuDetailsCard({info , resInfo}) {
     {/* {
       vegClassifier === "VEG" ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" alt="" /> : <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png" alt="" />
     } */}
-    <img className="w-4" src={isVeg && vegClassifier && isVeg == 1 || vegClassifier === "VEG" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png"} alt="" />
+    <img className="w-4" src={isVeg || vegClassifier && isVeg == 1 || vegClassifier === "VEG" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png"} alt="" />
     <h1 className="font-bold text-lg">{name}</h1>
     <p className="font-bold text-lg">₹{defaultPrice /100 || price /100 || finalPrice /100}</p>
 
