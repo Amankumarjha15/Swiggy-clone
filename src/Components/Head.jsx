@@ -1,9 +1,19 @@
 import React, { useContext, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { CartContext, Coordinates, Visibility } from '../context/contextApi'
+import { useDispatch, useSelector } from 'react-redux';
+import { toogleSearchBar} from '../utils/toogleSlice';
+
+
 
 function Head() {
-  const {Visible , setVisible} = useContext(Visibility);
+  // const {Visible , setVisible} = useContext(Visibility);
+
+ const Visible = useSelector((state)=> state.toogleSlice.searchBarToogle)
+//  console.log(data)
+ const dispatch = useDispatch()
+
+
   const {cartData , setcartData} = useContext(CartContext);
   
   const {setCoord} = useContext(Coordinates);
@@ -71,7 +81,9 @@ async function fetchLatAndLng(id){
 
   
   function handleVisibility (){
-    setVisible(prev => !prev)
+    // setVisible(prev => !prev)
+    dispatch(toogleSearchBar())
+
 }
 
 
