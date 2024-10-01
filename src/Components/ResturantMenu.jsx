@@ -396,6 +396,8 @@ function MenuDetailsCard({info , resInfo}) {
 
   const [isMore, setisMore] = useState(false)
 
+  const [diffRes, setdiffRes] = useState(false)
+
   // const {cartData , setcartData} = useContext(CartContext);
   const cartData = useSelector((state)=> state.cartSlice.cartItems)
   const resInfoLocalStorage = useSelector((state)=> state.cartSlice.resInfo)
@@ -417,18 +419,30 @@ function MenuDetailsCard({info , resInfo}) {
           toast.success("Food Added To Cart")
         } else {
           // alert("Selected item is from unother resturant please clear the cart or select items from this " + resInfoLocalStorage.name + " only")
-          toast.error("Selected item is from unother resturant please clear the cart or select items from this " + resInfoLocalStorage.name + " only")
+          toast.error("Order Food From  " + resInfoLocalStorage.name + "  Only")
+          setdiffRes((prev)=>!prev)
         }
       }else{
         // alert("Item Is Already Added In Your Cart")
         toast.error("Already In Your Cart")
       }
   }
+
+
+
+  function handleDiffRes(){
+    setdiffRes((prev)=>!prev)
+  }
+  function handleClearCart(){
+    dispatch(clearCart())
+    handleDiffRes()
+    toast.success("Your Cart Is Cleared")
+  }
   
   
   
   return(
-<>
+<div>
  <div className="flex justify-between w-full min-h-[182px]">
   <div className="w-[70%]">
     {/* {
@@ -463,7 +477,21 @@ function MenuDetailsCard({info , resInfo}) {
 
  <hr className="my-5"/> 
 
- </>   
+ {
+  diffRes && 
+  (
+    <div className="w-[520px] h-[210px] p-10 border shadow-2xl duration-500 border-black z-40 left-[35%] fixed bottom-10 bg-white"> 
+      <h1 className="font-bold text-xl">Items already in cart</h1>
+      <p className="text-sm text-gray-500">Your cart contains items from other restaurant. Would you like to reset your cart for adding items from this restaurant?</p>
+      <div className="flex gap-3 mt-4">
+        <button onClick={handleDiffRes} className="border border-green-600 text-green-600 p-3 w-full">NO</button>
+        <button onClick={handleClearCart} className="border border-white p-3 w-full bg-green-700 text-white">YES , START AFRESH</button>
+      </div>
+    </div>
+  )
+ }
+
+ </div>   
 
 
 )}

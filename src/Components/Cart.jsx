@@ -39,7 +39,7 @@ function handleRemove(i){
     newArr.splice(i,1)
     // setcartData(newArr)
     dispatch(deleteItem(newArr));
-    toast.success("Food Removed")
+    toast.error("Food Removed")
     // localStorage.setItem("cartData" , JSON.stringify(newArr))
   } else {
     handleClearCart()
@@ -48,7 +48,7 @@ function handleRemove(i){
 
   function handleClearCart(){
     dispatch(clearCart())
-    toast.success("Cart Cleared")
+    toast.success("Your Cart Is Cleared")
     // setcartData([])
     // localStorage.setItem("cartData" , JSON.stringify([]));
     // localStorage.setItem("resInfo" , JSON.stringify([]));
