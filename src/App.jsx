@@ -15,19 +15,21 @@ function App() {
 
 
   const [Coord, setCoord] = useState({lat : 28.65200 , lng : 77.16630})
-  const [cartData, setcartData] = useState([])
 
-  function getDataFromLocalStorge(){
-    let data = JSON.parse(localStorage.getItem("cartData")) || []
-    setcartData(data);
-  }
 
-  useEffect(()=>{
-    getDataFromLocalStorge()
-  },[])
+  // const [cartData, setcartData] = useState([])
+
+  // function getDataFromLocalStorge(){
+  //     let data = JSON.parse(localStorage.getItem("cartData")) || []
+  //   setcartData(data);
+  // }
+
+  // useEffect(()=>{
+  //   getDataFromLocalStorge()
+  // },[])
 
   return (
-    <CartContext.Provider value={{cartData , setcartData}}>
+//     <CartContext.Provider value={{cartData , setcartData}}>
           <Coordinates.Provider value={{Coord , setCoord}}>
                 {/* <Visibility.Provider value={{Visible , setVisible}}> */}
                         <div className={Visible ? "overflow-hidden max-h-screen" : ""}>
@@ -42,7 +44,7 @@ function App() {
                       </div>
               {/* </Visibility.Provider> */}
         </Coordinates.Provider>
-   </CartContext.Provider>
+  //  </CartContext.Provider>
   )
 }
 

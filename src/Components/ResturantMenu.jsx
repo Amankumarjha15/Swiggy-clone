@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CartContext, Coordinates } from "../context/contextApi";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart , deleteItem ,clearCart } from "../utils/cartSlice";
 
 function ResturantMenu() {
   const { id } = useParams();
@@ -393,19 +395,24 @@ function MenuDetailsCard({info , resInfo}) {
 
   const [isMore, setisMore] = useState(false)
 
-  const {cartData , setcartData} = useContext(CartContext);
+  // const {cartData , setcartData} = useContext(CartContext);
+  const cartData = useSelector((state)=> state.cartSlice.cartItems)
+  const resInfoLocalStorage = useSelector((state)=> state.cartSlice.resInfo)
+  const dispatch = useDispatch()
+  
   
 
 
   function HandleAddToCart(){
       const isAdded = cartData.find((data)=> data.id === info.id);
-      console.log(resInfo)
-      let resInfoLocalStorage = JSON.parse(localStorage.getItem("resInfo")) || []
+      // console.log(resInfo)
+      // let resInfoLocalStorage = JSON.parse(localStorage.getItem("resInfo")) || []
       if(!isAdded){
         if (resInfoLocalStorage.name === resInfo.name || resInfoLocalStorage.length === 0) {
-          setcartData((prev)=>[...prev , info])
-          localStorage.setItem("cartData" , JSON.stringify([...cartData , info]))
-          localStorage.setItem("resInfo" , JSON.stringify(resInfo))
+          // setcartData((prev)=>[...prev , info])
+          // localStorage.setItem("cartData" , JSON.stringify([...cartData , info]))
+          // localStorage.setItem("resInfo" , JSON.stringify(resInfo))
+          dispatch(addToCart({info , resInfo}))
         } else {
           alert("Selected item is from unother resturant please clear the cart or select items from this " + resInfoLocalStorage.name + " only")
         }

@@ -1,10 +1,18 @@
 import React, { useContext, useEffect } from 'react'
 import { CartContext } from '../context/contextApi'
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCart, deleteItem} from '../utils/cartSlice';
 
 function Cart() {
 
-  const {cartData , setcartData} = useContext(CartContext);
+  // const {cartData , setcartData} = useContext(CartContext);
+
+  const cartData = useSelector((state)=> state.cartSlice.cartItems)
+  // console.log(cartData)
+  const dispatch = useDispatch()
+
+
 
 //   console.log(cartData);
 //   let totalPrice = 0 ;
@@ -28,17 +36,19 @@ function handleRemove(i){
   if (cartData.length > 1) {
     let newArr=[...cartData]
     newArr.splice(i,1)
-    setcartData(newArr)
-    localStorage.setItem("cartData" , JSON.stringify(newArr))
+    // setcartData(newArr)
+    dispatch(deleteItem(newArr));
+    // localStorage.setItem("cartData" , JSON.stringify(newArr))
   } else {
     handleClearCart()
   }
   }
 
   function handleClearCart(){
-    setcartData([])
-    localStorage.setItem("cartData" , JSON.stringify([]));
-    localStorage.setItem("resInfo" , JSON.stringify([]));
+    dispatch(clearCart())
+    // setcartData([])
+    // localStorage.setItem("cartData" , JSON.stringify([]));
+    // localStorage.setItem("resInfo" , JSON.stringify([]));
 
   }
 

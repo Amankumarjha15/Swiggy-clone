@@ -6,8 +6,8 @@ import cartSlice from "./cartSlice";
 
 const store = configureStore({
     reducer : {
-        toogleSlice,
-        cartSlice
+       toogleSlice : toogleSlice,
+       cartSlice : cartSlice
     }
 })
 

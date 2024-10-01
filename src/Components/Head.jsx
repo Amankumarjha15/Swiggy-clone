@@ -14,7 +14,9 @@ function Head() {
  const dispatch = useDispatch()
 
 
-  const {cartData , setcartData} = useContext(CartContext);
+  // const {cartData , setcartData} = useContext(CartContext);
+
+  const cartData = useSelector((state)=> state.cartSlice.cartItems)
   
   const {setCoord} = useContext(Coordinates);
 
