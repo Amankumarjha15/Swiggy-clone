@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ResturantCard from "./ResturantCard";
 
 function OnlineFoodDelhivery({ Data , title}) {
@@ -17,6 +17,14 @@ function OnlineFoodDelhivery({ Data , title}) {
       Name : "Offers"
     },
   ]
+
+  const [activeBtn, setactiveBtn] = useState(null)
+
+function handleFilterBtn(filterName){
+setactiveBtn(activeBtn === filterName ? null : filterName)
+}
+
+
   return (
     <>
       <div>
@@ -26,9 +34,9 @@ function OnlineFoodDelhivery({ Data , title}) {
                 {
                   filterOptions &&
                   filterOptions.map((data)=>(
-                    <button onClick={} className='filterBtn flex gap-3'>
+                    <button onClick={()=>handleFilterBtn(data.Name)} className={'filterBtn flex gap-3 ' + (activeBtn === data.Name ? "bg-gray-200 border border-black" : "")}>
                        <p>{data.Name}</p>
-                       <i className="fi text-sm mt-1 fi-br-cross-small hidden"></i>
+                       <i className={"fi text-sm mt-1 fi-br-cross-small " + (activeBtn === data.Name ? "visible" : "hidden")}></i>
                        </button>
                   ))
                 }
