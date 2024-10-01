@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { CartContext, Coordinates } from "../context/contextApi";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart , deleteItem ,clearCart } from "../utils/cartSlice";
+import toast from "react-hot-toast";
 
 function ResturantMenu() {
   const { id } = useParams();
@@ -413,11 +414,14 @@ function MenuDetailsCard({info , resInfo}) {
           // localStorage.setItem("cartData" , JSON.stringify([...cartData , info]))
           // localStorage.setItem("resInfo" , JSON.stringify(resInfo))
           dispatch(addToCart({info , resInfo}))
+          toast.success("Food Added To Cart")
         } else {
-          alert("Selected item is from unother resturant please clear the cart or select items from this " + resInfoLocalStorage.name + " only")
+          // alert("Selected item is from unother resturant please clear the cart or select items from this " + resInfoLocalStorage.name + " only")
+          toast.error("Selected item is from unother resturant please clear the cart or select items from this " + resInfoLocalStorage.name + " only")
         }
       }else{
-        alert("Item Is Already Added In Your Cart")
+        // alert("Item Is Already Added In Your Cart")
+        toast.error("Already In Your Cart")
       }
   }
   

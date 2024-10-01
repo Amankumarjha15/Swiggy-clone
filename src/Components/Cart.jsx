@@ -3,6 +3,7 @@ import { CartContext } from '../context/contextApi'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, deleteItem} from '../utils/cartSlice';
+import toast from 'react-hot-toast';
 
 function Cart() {
 
@@ -38,6 +39,7 @@ function handleRemove(i){
     newArr.splice(i,1)
     // setcartData(newArr)
     dispatch(deleteItem(newArr));
+    toast.success("Food Removed")
     // localStorage.setItem("cartData" , JSON.stringify(newArr))
   } else {
     handleClearCart()
@@ -46,6 +48,7 @@ function handleRemove(i){
 
   function handleClearCart(){
     dispatch(clearCart())
+    toast.success("Cart Cleared")
     // setcartData([])
     // localStorage.setItem("cartData" , JSON.stringify([]));
     // localStorage.setItem("resInfo" , JSON.stringify([]));
