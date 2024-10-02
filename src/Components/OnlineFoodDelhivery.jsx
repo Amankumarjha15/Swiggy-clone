@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ResturantCard from "./ResturantCard";
+import { useDispatch } from "react-redux";
+import { setFilterValue } from "../utils/filterSlice";
 
 function OnlineFoodDelhivery({ Data , title}) {
   // console.log(Data)
@@ -20,10 +22,14 @@ function OnlineFoodDelhivery({ Data , title}) {
 
   const [activeBtn, setactiveBtn] = useState(null)
 
+
+  const dispatch = useDispatch()
+
 function handleFilterBtn(filterName){
 setactiveBtn(activeBtn === filterName ? null : filterName)
 }
 
+dispatch(setFilterValue(activeBtn))
 
   return (
     <>
@@ -34,7 +40,7 @@ setactiveBtn(activeBtn === filterName ? null : filterName)
                 {
                   filterOptions &&
                   filterOptions.map((data)=>(
-                    <button onClick={()=>handleFilterBtn(data.Name)} className={'filterBtn flex gap-3 ' + (activeBtn === data.Name ? "bg-gray-200 border border-black" : "")}>
+                    <button onClick={()=>handleFilterBtn(data.Name)} className={"filterBtn flex gap-3 shadow-lg "  + (activeBtn === data.Name ? " bg-gray-200 border border-black" : "")}>
                        <p>{data.Name}</p>
                        <i className={"fi text-sm mt-1 fi-br-cross-small " + (activeBtn === data.Name ? "visible" : "hidden")}></i>
                        </button>
