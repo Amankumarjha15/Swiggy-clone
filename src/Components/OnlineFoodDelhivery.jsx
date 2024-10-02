@@ -5,20 +5,7 @@ import { setFilterValue } from "../utils/filterSlice";
 
 function OnlineFoodDelhivery({ Data , title}) {
   // console.log(Data)
- const filterOptions =[
-    {
-      Name : "Rating 4.0+"
-    },
-    {
-      Name : "Less Than Rs . 300"
-    },
-    {
-      Name : "Rs . 300 - Rs . 600"
-    },
-    {
-      Name : "Offers"
-    },
-  ]
+ const filterOptions =["Rating 4.0+","Less Than Rs . 300","Rs . 300 - Rs . 600","Offers"]
 
   const [activeBtn, setactiveBtn] = useState(null)
 
@@ -39,10 +26,10 @@ dispatch(setFilterValue(activeBtn))
               <div className="my-7 flex gap-3">
                 {
                   filterOptions &&
-                  filterOptions.map((data)=>(
-                    <button onClick={()=>handleFilterBtn(data.Name)} className={"filterBtn flex gap-3 shadow-lg "  + (activeBtn === data.Name ? " bg-gray-200 border border-black" : "")}>
-                       <p>{data.Name}</p>
-                       <i className={"fi text-sm mt-1 fi-br-cross-small " + (activeBtn === data.Name ? "visible" : "hidden")}></i>
+                  filterOptions.map((Name)=>(
+                    <button onClick={()=>handleFilterBtn(Name)} className={"filterBtn flex gap-3 shadow-lg "  + (activeBtn === Name ? " bg-gray-200 border border-black" : "")}>
+                       <p>{Name}</p>
+                       <i className={"fi text-sm mt-1 fi-br-cross-small " + (activeBtn === Name ? "visible" : "hidden")}></i>
                        </button>
                   ))
                 }
