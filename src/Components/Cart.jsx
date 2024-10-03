@@ -56,6 +56,11 @@ function handleRemove(i){
   }
 
 
+  function handlePlaceOrder (){
+    toast.success("Order Placed")
+  }
+
+
   if(cartData.length === 0){
     return (
         <div className="w-full">
@@ -89,7 +94,11 @@ function handleRemove(i){
             ))
            }
            <h1>Total - ₹{totalPrice}</h1>
+
+           <div className="flex justify-between">
            <button onClick={handleClearCart} className='p-6 m-5 bg-green-700 text-white'>Clear Cart</button>
+           <button onClick={handlePlaceOrder} className='p-6 m-5 bg-green-700 text-white'>Place Order</button>
+           </div>
         </div>
     </div>
   )
