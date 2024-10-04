@@ -47,7 +47,7 @@ const navItems = [
   {
     name: "Log In",
     image :"fi-rr-user",
-    path : "/login"
+    path : "/signin"
   },
   {
     name: "Cart",
