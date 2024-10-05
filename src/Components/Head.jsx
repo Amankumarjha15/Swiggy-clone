@@ -164,10 +164,10 @@ async function fetchLatAndLng(id){
     <div className='w-full shadow-md h-24 flex justify-center items-center z-10 top-0 bg-white sticky'>
         
 
-  <div className='w-full md:w-[85%] flex justify-between'>
-    <div className='flex items-center'>
+  <div className='w-full lg:w-[85%] flex justify-between'>
+    <div className='flex items-center mr-2 md:m-0'>
            <Link to={"/"}>
-           <div className='w-24 hover:scale-105 duration-300'>
+           <div className='w-14 sm:w-24 hover:scale-105 duration-300'>
               <img src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png" alt="" />
            </div>
            </Link>
@@ -185,7 +185,7 @@ async function fetchLatAndLng(id){
              navItems.map((data,i)=>(
               data.name == "Log In" ? 
               <>
-              <div className='hidden md:flex' onClick={handleLogin}>
+              <div className='hidden lg:flex' onClick={handleLogin}>
               <div className='flex items-center gap-3 cursor-pointer' key={i}>
                 { userData ? <img src={userData.photo} alt="" /> :
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
@@ -193,7 +193,7 @@ async function fetchLatAndLng(id){
             </div>
             </div> 
 
-            <div className='md:hidden' onClick={handleLogin}>
+            <div className='lg:hidden' onClick={handleLogin}>
               <div className='flex items-center gap-3 cursor-pointer' key={i}>
                 { userData ? <img src={userData.photo} alt="" /> :
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
@@ -202,7 +202,7 @@ async function fetchLatAndLng(id){
             </>
             : 
             <>
-            <div className="hidden md:flex">
+            <div className="hidden lg:flex">
              <Link to={data.path}>
               <div className='flex items-center gap-3' key={i}>
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
@@ -215,7 +215,7 @@ async function fetchLatAndLng(id){
             </Link> 
             </div>
 
-            <div className="md:hidden">
+            <div className="lg:hidden">
              <Link to={data.path}>
               <div className='flex items-center gap-3' key={i}>
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
