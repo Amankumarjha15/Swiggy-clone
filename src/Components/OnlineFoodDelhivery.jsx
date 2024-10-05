@@ -23,7 +23,7 @@ dispatch(setFilterValue(activeBtn))
       <div>
         <div className="my-8">
         <p className='font-bold text-2xl'>{title}</p>
-              <div className="my-7 flex gap-3">
+              <div className="my-7 flex flex-wrap gap-3">
                 {
                   filterOptions &&
                   filterOptions.map((Name)=>(
@@ -39,7 +39,7 @@ dispatch(setFilterValue(activeBtn))
                   <button className='filterBtn'>Less Than Rs . 300</button> */}
               </div>
         </div>
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {
         Data &&
         Data.map((restaurant) => (

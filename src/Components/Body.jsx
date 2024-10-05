@@ -80,7 +80,7 @@ const filteredData = topResturant.filter((item) => {
 
   return (
     <div className='w-full mt-3'>
-        <div className='w-[80%] mt-3 mx-auto overflow-hidden'>
+        <div className='w-[90%] xl:w-[80%] mt-3 mx-auto overflow-hidden'>
         <OnYourMind Data={onYourMind}/>
         <TopResturant Data={topResturant} title={TopResTitle}/>
         <OnlineFoodDelhivery Data={filterVal ? filteredData : topResturant} title={OnlineTitle}/>
