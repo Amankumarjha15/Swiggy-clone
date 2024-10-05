@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { CartContext } from '../context/contextApi'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, deleteItem} from '../utils/cartSlice';
 import toast from 'react-hot-toast';
@@ -10,8 +10,10 @@ function Cart() {
   // const {cartData , setcartData} = useContext(CartContext);
 
   const cartData = useSelector((state)=> state.cartSlice.cartItems)
+  const userData = useSelector((state)=> state.authSlice.userData)
   // console.log(cartData)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
 
 
@@ -57,7 +59,12 @@ function handleRemove(i){
 
 
   function handlePlaceOrder (){
-    toast.success("Order Placed")
+    if(userData){
+      toast.success("Order Placed")
+    }else{
+      toast.error("Login Krle Bhai")
+      navigate("/signin")
+    }
   }
 
 

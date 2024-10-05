@@ -17,6 +17,7 @@ function Head() {
   // const {cartData , setcartData} = useContext(CartContext);
 
   const cartData = useSelector((state)=> state.cartSlice.cartItems)
+  const userData = useSelector((state)=> state.authSlice.userData)
   
   const {setCoord} = useContext(Coordinates);
 
@@ -144,7 +145,17 @@ async function fetchLatAndLng(id){
            
            {
              navItems.map((data,i)=>(
+              data.name == "Log In" ? 
               <Link to={data.path}>
+              <div className='flex items-center gap-3' key={i}>
+                { userData ? <img src={userData.photo} alt="" /> :
+              <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
+              <p className='text-lg text-gray-500 font-medium'>{userData ? userData.name : data.name}</p>
+             
+            </div>
+            </Link> 
+            : 
+             <Link to={data.path}>
               <div className='flex items-center gap-3' key={i}>
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
               <p className='text-lg text-gray-500 font-medium'>{data.name}</p>
@@ -153,7 +164,7 @@ async function fetchLatAndLng(id){
                data.name === "Cart" && <p>{cartData.length}</p> 
               }
             </div>
-            </Link>
+            </Link> 
             ))
             
            }
