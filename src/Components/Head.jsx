@@ -91,7 +91,7 @@ async function fetchLatAndLng(id){
 
 
   return (
-    <div className='relative w-full'>
+     <>
 
     <div className='w-full'>
     <div onClick={handleVisibility} className={'absolute duration-0 w-full z-30 h-full bg-black/50 ' + (Visible ? " visible" : " invisible")}></div>
@@ -121,6 +121,9 @@ async function fetchLatAndLng(id){
         </div>
     </div>
     </div>
+
+
+    <div className='relative w-full'>
 
 
 
@@ -182,6 +185,7 @@ async function fetchLatAndLng(id){
     </div>
     <Outlet/>
     </div>
+    </>
   )
 }
 
