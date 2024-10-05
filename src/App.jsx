@@ -6,13 +6,14 @@ import { CartContext, Coordinates, Visibility } from "./context/contextApi"
 import { useEffect, useState } from "react"
 import Cart from "./Components/Cart"
 import { useSelector } from "react-redux"
-import LoginPage from "./Components/LoginPage"
+import LoginPage from "./Components/LoginBtn"
 
 function App() {
 
   // const [Visible, setVisible] = useState(false);
 
   const Visible = useSelector((state)=> state.toogleSlice.searchBarToogle)
+  const loginVisible = useSelector((state)=> state.toogleSlice.loginToggle)
 
 
   const [Coord, setCoord] = useState({lat : 28.65200 , lng : 77.16630})
@@ -33,13 +34,12 @@ function App() {
 //     <CartContext.Provider value={{cartData , setcartData}}>
           <Coordinates.Provider value={{Coord , setCoord}}>
                 {/* <Visibility.Provider value={{Visible , setVisible}}> */}
-                        <div className={Visible ? "overflow-hidden max-h-screen" : ""}>
+                        <div className={(loginVisible ? "overflow-hidden max-h-screen" : "") ||(Visible ? "overflow-hidden max-h-screen" : "") }>
                               <Routes>
                                   <Route path="/" element={<Head/>}>
                                   <Route path="/" element={<Body/>}/>
                                   <Route path="/ResturantMenu/:id" element={<ResturantMenu/>}/>
                                   <Route path="/cart" element={<Cart/>}/>
-                                  <Route path="/signin" element={<LoginPage/>}/>
                                   <Route path="*" element={<h1>Coming Soon .......</h1>}/>
                                   </Route>  
                               </Routes>

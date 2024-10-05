@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { CartContext, Coordinates, Visibility } from '../context/contextApi'
 import { useDispatch, useSelector } from 'react-redux';
-import { toogleSearchBar} from '../utils/toogleSlice';
+import { toggleLogin, toogleSearchBar} from '../utils/toogleSlice';
+import LoginBtn from './LoginBtn';
 
 
 
@@ -10,6 +11,7 @@ function Head() {
   // const {Visible , setVisible} = useContext(Visibility);
 
  const Visible = useSelector((state)=> state.toogleSlice.searchBarToogle)
+ const loginVisible = useSelector((state)=> state.toogleSlice.loginToggle)
 //  console.log(data)
  const dispatch = useDispatch()
 
@@ -26,24 +28,9 @@ function Head() {
 
 const navItems = [
   {
-    name: "Swiggy Corporate",
-    image :"fi-rr-shopping-bag",
-    path : "/corporate"
-  },
-  {
     name: "Search",
     image :"fi-br-search",
     path : "/search"
-  },
-  {
-    name: "Offers",
-    image : "fi-rr-badge-percent",
-    path : "/offers"
-  },
-  {
-    name: "Help",
-    image :"fi-rs-interrogation",
-    path : "/help"
   },
   {
     name: "Log In",
@@ -90,6 +77,14 @@ async function fetchLatAndLng(id){
 }
 
 
+
+  function handleLogin (){
+    // setVisible(prev => !prev)
+    dispatch(toggleLogin())
+
+}
+
+
   return (
      <>
 
@@ -97,7 +92,7 @@ async function fetchLatAndLng(id){
     <div onClick={handleVisibility} className={'absolute duration-0 w-full z-30 h-full bg-black/50 ' + (Visible ? " visible" : " invisible")}></div>
     <div className={'bg-white z-40 p-5 absolute w-[40%] h-full duration-500 ' + (Visible ? "left-0" : "-left-[100%]")}>
         <div className='mx-10 flex flex-col gap-8'>
-          <i onClick={handleVisibility} className="fi font-bold text-4xl fi-br-cross"></i>
+          <i onClick={handleVisibility} className="fi font-bold text-2xl fi-br-cross"></i>
         <input type="text" className='border border-gray-700 p-5 focus:outline-none focus:shadow-lg hover:shadow-lg' onChange={(e)=>searchResultFun(e.target.value)} />
         <div>
           <ul className='border border-gray-600 p-7 shadow-2xl'>
@@ -123,6 +118,44 @@ async function fetchLatAndLng(id){
     </div>
 
 
+
+
+
+
+
+
+
+
+
+    <div className='w-full'>
+    <div onClick={handleLogin} className={'absolute duration-0 w-full z-30 h-full bg-black/50 ' + (loginVisible ? " visible" : " invisible")}></div>
+    <div className={'bg-white z-40 p-20 absolute w-[40%] h-full duration-500 ' + (loginVisible ? "right-0" : "-right-[100%]")}>
+        <div className='my-10'>
+          <i onClick={handleLogin} className="fi font-bold text-2xl fi-br-cross"></i>
+        </div>
+        <div className="flex justify-between items-center">
+          <h1 className='font-bold text-4xl border-b-4 border-black pb-2'>Login</h1>
+          <img className='w-32' src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r" alt="" />
+        </div>
+        <LoginBtn/>
+        <p className='opacity-70'>By clicking On Login , I accept the term and conditions & Privacy and policy</p>
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div className='relative w-full'>
 
 
@@ -134,7 +167,9 @@ async function fetchLatAndLng(id){
   <div className='w-[85%] flex justify-between'>
     <div className='flex items-center'>
            <Link to={"/"}>
-              <img className='w-24 hover:scale-105 duration-300' src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png" alt="" />
+           <div className='w-24 hover:scale-105 duration-300'>
+              <img src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png" alt="" />
+           </div>
            </Link>
        <div className='flex items-center' onClick={handleVisibility}>
 
@@ -149,14 +184,14 @@ async function fetchLatAndLng(id){
            {
              navItems.map((data,i)=>(
               data.name == "Log In" ? 
-              <Link to={data.path}>
-              <div className='flex items-center gap-3' key={i}>
+              <div onClick={handleLogin}>
+              <div className='flex items-center gap-3 cursor-pointer' key={i}>
                 { userData ? <img src={userData.photo} alt="" /> :
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
               <p className='text-lg text-gray-500 font-medium'>{userData ? userData.name : data.name}</p>
              
             </div>
-            </Link> 
+            </div> 
             : 
              <Link to={data.path}>
               <div className='flex items-center gap-3' key={i}>
