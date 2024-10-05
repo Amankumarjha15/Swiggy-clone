@@ -90,7 +90,7 @@ async function fetchLatAndLng(id){
 
     <div className='w-full'>
     <div onClick={handleVisibility} className={'absolute duration-0 w-full z-30 h-full bg-black/50 ' + (Visible ? " visible" : " invisible")}></div>
-    <div className={'bg-white z-40 p-5 absolute w-[40%] h-full duration-500 ' + (Visible ? "left-0" : "-left-[100%]")}>
+    <div className={'bg-white z-40 p-5 absolute w-full md:w-[40%] h-full duration-500 ' + (Visible ? "left-0" : "-left-[100%]")}>
         <div className='mx-10 flex flex-col gap-8'>
           <i onClick={handleVisibility} className="fi font-bold text-2xl fi-br-cross"></i>
         <input type="text" className='border border-gray-700 p-5 focus:outline-none focus:shadow-lg hover:shadow-lg' onChange={(e)=>searchResultFun(e.target.value)} />
@@ -129,7 +129,7 @@ async function fetchLatAndLng(id){
 
     <div className='w-full'>
     <div onClick={handleLogin} className={'absolute duration-0 w-full z-30 h-full bg-black/50 ' + (loginVisible ? " visible" : " invisible")}></div>
-    <div className={'bg-white z-40 p-20 absolute w-[40%] h-full duration-500 ' + (loginVisible ? "right-0" : "-right-[100%]")}>
+    <div className={'bg-white z-40 p-20 absolute w-full md:w-[40%] h-full duration-500 ' + (loginVisible ? "right-0" : "-right-[100%]")}>
         <div className='my-10'>
           <i onClick={handleLogin} className="fi font-bold text-2xl fi-br-cross"></i>
         </div>
@@ -164,7 +164,7 @@ async function fetchLatAndLng(id){
     <div className='w-full shadow-md h-24 flex justify-center items-center z-10 top-0 bg-white sticky'>
         
 
-  <div className='w-[85%] flex justify-between'>
+  <div className='w-full md:w-[85%] flex justify-between'>
     <div className='flex items-center'>
            <Link to={"/"}>
            <div className='w-24 hover:scale-105 duration-300'>
@@ -179,20 +179,30 @@ async function fetchLatAndLng(id){
 
        </div>
     </div>
-           <div className='flex items-center gap-10'>
+           <div className='flex items-center gap-4 md:gap-10 mr-4'>
            
            {
              navItems.map((data,i)=>(
               data.name == "Log In" ? 
-              <div onClick={handleLogin}>
+              <>
+              <div className='hidden md:flex' onClick={handleLogin}>
               <div className='flex items-center gap-3 cursor-pointer' key={i}>
                 { userData ? <img src={userData.photo} alt="" /> :
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
               <p className='text-lg text-gray-500 font-medium'>{userData ? userData.name : data.name}</p>
-             
             </div>
             </div> 
+
+            <div className='md:hidden' onClick={handleLogin}>
+              <div className='flex items-center gap-3 cursor-pointer' key={i}>
+                { userData ? <img src={userData.photo} alt="" /> :
+              <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
+            </div>
+            </div> 
+            </>
             : 
+            <>
+            <div className="hidden md:flex">
              <Link to={data.path}>
               <div className='flex items-center gap-3' key={i}>
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
@@ -203,6 +213,21 @@ async function fetchLatAndLng(id){
               }
             </div>
             </Link> 
+            </div>
+
+            <div className="md:hidden">
+             <Link to={data.path}>
+              <div className='flex items-center gap-3' key={i}>
+              <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
+              {
+               cartData == 0 ? "" :
+               data.name === "Cart" && <p>{cartData.length}</p> 
+              }
+            </div>
+            </Link> 
+            </div>
+
+            </>
             ))
             
            }
