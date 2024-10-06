@@ -69,7 +69,7 @@ function handleNext (){
 
   return (
     <div className="w-full">
-      <div className="w-1/2 mx-auto pt-8">
+      <div className="w-[95%] xl:w-1/2 mx-auto pt-8">
         <p className="text-sm hover:cursor-pointer text-slate-700 hover:text-black">
           <Link to={"/"}>Home </Link>/ <Link to={"/"}>{resInfo.city}</Link> /{" "}
           {resInfo.name}
@@ -444,7 +444,7 @@ function MenuDetailsCard({info , resInfo}) {
   return(
 <div>
  <div className="flex justify-between w-full min-h-[182px]">
-  <div className="w-[70%]">
+  <div className="w-[50%] md:w-[70%]">
     {/* {
       vegClassifier === "VEG" ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" alt="" /> : <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png" alt="" />
     } */}
@@ -469,9 +469,9 @@ function MenuDetailsCard({info , resInfo}) {
     
 
   </div>
-  <div className="w-[20%] relative h-full">
-    <img className="rounded-2xl w-[156px] h-[144px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
-    <button onClick={HandleAddToCart} className="bg-white absolute bottom-[-20px] left-3 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-green-700">ADD</button>
+  <div className="w-[35%] md:w-[20%] relative h-full">
+    <img className="rounded-2xl w-[156px] h-[144px] aspect-square" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
+    <button onClick={HandleAddToCart} className="bg-white absolute bottom-[-20px] left-1/2 -translate-x-1/2 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-green-700">ADD</button>
   </div>
  </div>  
 
