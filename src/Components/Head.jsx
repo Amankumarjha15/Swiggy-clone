@@ -90,7 +90,7 @@ async function fetchLatAndLng(id){
 
     <div className='w-full'>
     <div onClick={handleVisibility} className={'absolute duration-0 w-full z-30 h-full bg-black/50 ' + (Visible ? " visible" : " invisible")}></div>
-    <div className={'bg-white z-40 p-5 absolute w-full lg:w-[40%] h-full duration-500 ' + (Visible ? "left-0" : "-left-[100%]")}>
+    <div className={'bg-white z-40 p-5 absolute w-full lg:w-[60%] xl:w-[40%] h-full duration-500 ' + (Visible ? "left-0" : "-left-[100%]")}>
         <div className='mx-10 flex flex-col gap-8'>
           <i onClick={handleVisibility} className="fi font-bold text-2xl fi-br-cross"></i>
         <input type="text" className='border border-gray-700 p-5 focus:outline-none focus:shadow-lg hover:shadow-lg' onChange={(e)=>searchResultFun(e.target.value)} />
@@ -129,7 +129,7 @@ async function fetchLatAndLng(id){
 
     <div className='w-full'>
     <div onClick={handleLogin} className={'absolute duration-0 w-full z-30 h-full bg-black/50 ' + (loginVisible ? " visible" : " invisible")}></div>
-    <div className={'bg-white z-40 p-20 absolute w-full lg:w-[40%] h-full duration-500 ' + (loginVisible ? "right-0" : "-right-[100%]")}>
+    <div className={'bg-white z-40 p-10 md:p-20 absolute w-full lg:w-[60%] xl:w-[40%] h-full duration-500 ' + (loginVisible ? "right-0" : "-right-[100%]")}>
         <div className='my-10'>
           <i onClick={handleLogin} className="fi font-bold text-2xl fi-br-cross"></i>
         </div>
