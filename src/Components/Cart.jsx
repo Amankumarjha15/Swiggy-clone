@@ -88,13 +88,13 @@ function handleRemove(i){
 
   return (
     <div className="w-full">
-        <div className="w-[70%] mx-auto">
+        <div className="w-[95%] xl:w-[70%] mx-auto">
           <Link to={`/ResturantMenu/`+resInfo.id}>
-                    <div className='m-3 flex gap-16 border-4 border-black/50 p-10'>
+                    <div className=' md:m-3 flex gap-4 md:gap-16 border-4 border-black/50 p-2 md:p-10'>
                       <img className='rounded-xl aspect-square w-36' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + resInfo.cloudinaryImageId} alt="" />
                       <div className="flex flex-col justify-evenly">
-                        <h1 className='font-bold text-4xl border-b-4 border-black pb-3'>{resInfo.name}</h1>
-                        <h1 className='font-bold text-xl border-b-2 border-black pb-3'>{resInfo.areaName}</h1>
+                        <h1 className='font-bold text-xl md:text-4xl border-b-4 border-black pb-3'>{resInfo.name}</h1>
+                        <h1 className='font-bold text-lg md:text-xl border-b-2 border-black pb-3'>{resInfo.areaName}</h1>
                       </div>
                     </div>
           </Link>
@@ -118,8 +118,8 @@ function handleRemove(i){
            cartData &&
             cartData.map(({name ,defaultPrice, price ,finalPrice, itemAttribute : {vegClassifier}, ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId , isVeg} , i)=>(
               <>
-              <div className='flex p-5'>
-              <div className="w-full">
+              <div className='flex p-2 md:p-5 gap-4'>
+              <div className="w-[60%] md:w-[80%]">
                 {/* {
                   vegClassifier === "VEG" ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" alt="" /> : <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png" alt="" />
                 } */}
@@ -141,9 +141,9 @@ function handleRemove(i){
                 
             
               </div>
-              <div className="w-[20%] relative h-full">
+              <div className="w-[40%] md:w-[20%] relative h-full">
                 <img className="rounded-2xl w-[156px] h-[144px]" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
-                <button onClick={()=> handleRemove(i)} className="bg-white absolute bottom-[-20px] left-0 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-red-500">REMOVE</button>
+                <button onClick={()=> handleRemove(i)} className="bg-white absolute bottom-[-20px] left-1/2 -translate-x-1/2 lg:-translate-x-0 lg:left-0 text-lg font-bold rounded-2xl border p-4 lg:px-10 py-2 drop-shadow text-red-500">REMOVE</button>
               </div>
              </div>  
             
@@ -157,7 +157,7 @@ function handleRemove(i){
 
            <h1 className='m-10 font-bold text-2xl'>Total - ₹{totalPrice}</h1>
 
-           <div className="flex justify-evenly p-10">
+           <div className="flex justify-evenly md:p-10">
            <button onClick={handleClearCart} className='px-10 py-5 rounded-2xl bg-green-700 text-white'>Clear Cart</button>
            <button onClick={handlePlaceOrder} className='px-10 py-5 rounded-2xl bg-green-700 text-white'>Place Order</button>
            </div>
