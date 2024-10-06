@@ -185,7 +185,7 @@ async function fetchLatAndLng(id){
               <>
               <div className='hidden lg:flex' onClick={handleLogin}>
               <div className='flex items-center gap-3 cursor-pointer' key={i}>
-                { userData ? <img src={userData.photo} alt="" /> :
+                { userData ? <img className='w-10 rounded-full' src={userData.photo} alt="" /> :
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
               <p className='text-lg text-gray-500 font-medium'>{userData ? userData.name : data.name}</p>
             </div>
@@ -193,7 +193,7 @@ async function fetchLatAndLng(id){
 
             <div className='lg:hidden' onClick={handleLogin}>
               <div className='flex items-center gap-3 cursor-pointer' key={i}>
-                { userData ? <img src={userData.photo} alt="" /> :
+                { userData ? <img className='w-10 rounded-full' src={userData.photo} alt="" /> :
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
             </div>
             </div> 
