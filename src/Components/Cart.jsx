@@ -90,11 +90,11 @@ function handleRemove(i){
     <div className="w-full">
         <div className="w-[95%] xl:w-[70%] mx-auto">
           <Link to={`/ResturantMenu/`+resInfo.id}>
-                    <div className=' md:m-3 flex gap-4 md:gap-16 border-4 border-black/50 p-2 md:p-10'>
+                    <div className=' md:m-3 flex gap-4 md:gap-16 border-b-4 border-t-4 border-black/30 p-2 md:p-10'>
                       <img className='rounded-xl aspect-square w-36' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + resInfo.cloudinaryImageId} alt="" />
                       <div className="flex flex-col justify-evenly">
-                        <h1 className='font-bold text-xl md:text-4xl border-b-4 border-black pb-3'>{resInfo.name}</h1>
-                        <h1 className='font-bold text-lg md:text-xl border-b-2 border-black pb-3'>{resInfo.areaName}</h1>
+                        <h1 className='font-bold text-xl md:text-4xl border-b-4 border-black/30 pb-3 text-orange-600'>{resInfo.name}</h1>
+                        <h1 className='font-bold text-lg md:text-xl border-b-2 border-black/30 pb-3 text-orange-500'>{resInfo.areaName}</h1>
                       </div>
                     </div>
           </Link>

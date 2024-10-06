@@ -442,7 +442,7 @@ function MenuDetailsCard({info , resInfo}) {
   
   
   return(
-<div>
+<div className="w-full">
  <div className="flex justify-between w-full min-h-[182px]">
   <div className="w-[50%] md:w-[70%]">
     {/* {
@@ -480,7 +480,7 @@ function MenuDetailsCard({info , resInfo}) {
  {
   diffRes && 
   (
-    <div className="w-[520px] h-[210px] p-10 border shadow-2xl duration-500 border-black z-40 left-[35%] fixed bottom-10 bg-white"> 
+    <div className="fixed w-[520px] h-[210px] p-10 border shadow-2xl duration-500 border-black z-40 md:left-1/2 md:-translate-x-1/2  bottom-10 bg-white"> 
       <h1 className="font-bold text-xl">Items already in cart</h1>
       <p className="text-sm text-gray-500">Your cart contains items from other restaurant. Would you like to reset your cart for adding items from this restaurant?</p>
       <div className="flex gap-3 mt-4">

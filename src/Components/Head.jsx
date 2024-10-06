@@ -129,7 +129,7 @@ async function fetchLatAndLng(id){
 
     <div className='w-full'>
     <div onClick={handleLogin} className={'absolute duration-0 w-full z-30 h-full bg-black/50 ' + (loginVisible ? " visible" : " invisible")}></div>
-    <div className={'bg-white z-40 p-10 md:p-20 absolute w-full lg:w-[60%] xl:w-[40%] h-full duration-500 ' + (loginVisible ? "right-0" : "-right-[100%]")}>
+    <div className={'bg-white z-40 p-10 md:p-20 fixed w-full lg:w-[60%] xl:w-[40%] h-full duration-500 ' + (loginVisible ? "right-0" : "-right-[100%]")}>
         <div className='my-10'>
           <i onClick={handleLogin} className="fi font-bold text-2xl fi-br-cross"></i>
         </div>
@@ -156,7 +156,7 @@ async function fetchLatAndLng(id){
 
 
 
-  <div className='relative w-full'>
+  <div className='relative w-screen'>
 
 
       <div className='w-full shadow-md h-24 flex justify-center items-center z-10 top-0 bg-white sticky'>
@@ -192,7 +192,7 @@ async function fetchLatAndLng(id){
             </div> 
 
             <div className='lg:hidden' onClick={handleLogin}>
-              <div className='flex items-center gap-3 cursor-pointer' key={i}>
+              <div className='flex items-center gap-3 cursor-pointer ' key={i}>
                 { userData ? <img className='w-10 rounded-full' src={userData.photo} alt="" /> :
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
             </div>
