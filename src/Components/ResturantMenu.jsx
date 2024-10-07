@@ -4,6 +4,7 @@ import { CartContext, Coordinates } from "../context/contextApi";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart , deleteItem ,clearCart } from "../utils/cartSlice";
 import toast from "react-hot-toast";
+import AddToCartButton from "./AddToCartButton";
 
 function ResturantMenu() {
   const { id } = useParams();
@@ -406,27 +407,27 @@ function MenuDetailsCard({info , resInfo}) {
   
 
 
-  function HandleAddToCart(){
-      const isAdded = cartData.find((data)=> data.id === info.id);
-      // console.log(resInfo)
-      // let resInfoLocalStorage = JSON.parse(localStorage.getItem("resInfo")) || []
-      if(!isAdded){
-        if (resInfoLocalStorage.name === resInfo.name || resInfoLocalStorage.length === 0) {
-          // setcartData((prev)=>[...prev , info])
-          // localStorage.setItem("cartData" , JSON.stringify([...cartData , info]))
-          // localStorage.setItem("resInfo" , JSON.stringify(resInfo))
-          dispatch(addToCart({info , resInfo}))
-          toast.success("Food Added To Cart")
-        } else {
-          // alert("Selected item is from unother resturant please clear the cart or select items from this " + resInfoLocalStorage.name + " only")
-          toast.error("Order Food From  " + resInfoLocalStorage.name + "  Only")
-          setdiffRes((prev)=>!prev)
-        }
-      }else{
-        // alert("Item Is Already Added In Your Cart")
-        toast.error("Already In Your Cart")
-      }
-  }
+  // function HandleAddToCart(){
+  //     const isAdded = cartData.find((data)=> data.id === info.id);
+  //     // console.log(resInfo)
+  //     // let resInfoLocalStorage = JSON.parse(localStorage.getItem("resInfo")) || []
+  //     if(!isAdded){
+  //       if (resInfoLocalStorage.name === resInfo.name || resInfoLocalStorage.length === 0) {
+  //         // setcartData((prev)=>[...prev , info])
+  //         // localStorage.setItem("cartData" , JSON.stringify([...cartData , info]))
+  //         // localStorage.setItem("resInfo" , JSON.stringify(resInfo))
+  //         dispatch(addToCart({info , resInfo}))
+  //         toast.success("Food Added To Cart")
+  //       } else {
+  //         // alert("Selected item is from unother resturant please clear the cart or select items from this " + resInfoLocalStorage.name + " only")
+  //         toast.error("Order Food From  " + resInfoLocalStorage.name + "  Only")
+  //         setdiffRes((prev)=>!prev)
+  //       }
+  //     }else{
+  //       // alert("Item Is Already Added In Your Cart")
+  //       toast.error("Already In Your Cart")
+  //     }
+  // }
 
 
 
@@ -471,7 +472,8 @@ function MenuDetailsCard({info , resInfo}) {
   </div>
   <div className="w-[35%] md:w-[20%] relative h-full">
     <img className="rounded-2xl w-[156px] h-[144px] aspect-square" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
-    <button onClick={HandleAddToCart} className="bg-white absolute bottom-[-20px] left-1/2 -translate-x-1/2 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-green-700">ADD</button>
+    {/* <button onClick={HandleAddToCart} className="bg-white absolute bottom-[-20px] left-1/2 -translate-x-1/2 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-green-700">ADD</button> */}
+    <AddToCartButton  info={info} resInfo={resInfo}/>
   </div>
  </div>  
 
