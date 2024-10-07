@@ -1,12 +1,13 @@
 import React from 'react'
 import AddToCartButton from './AddToCartButton'
+import { Link } from 'react-router-dom';
 
-function SearchCard({data :{card : {card : {info , restaurant : {info:res}}}}}) {
+function SearchCard({data :{card : {card : {info , restaurant : {info:resInfo}}}}}) {
 
 
    let {imageId = "" ,name:dish, price , isVeg = 0 } =info;
 
-   let {name:resname , id , avgRating , sla : {slaString}} =res;
+   let {name:resname , id , avgRating , sla : {slaString}} =resInfo;
 
 
 
@@ -21,6 +22,7 @@ function SearchCard({data :{card : {card : {info , restaurant : {info:res}}}}}) 
 
    
    <div className='w-[90%] h-[250px] m-5 bg-white text-black rounded-3xl'>
+         <Link to={`/ResturantMenu/`+id}>
            <div className="h-[30%] border-b-4 flex justify-between mx-5 items-center gap-3">
             <div>
             <h1 className='font-bold line-clamp-1'>{resname}</h1>
@@ -35,6 +37,8 @@ function SearchCard({data :{card : {card : {info , restaurant : {info:res}}}}}) 
 
            </div>
 
+           </Link>
+
 
           
           <div className="h-[70%] m-5 flex justify-between">
@@ -47,7 +51,8 @@ function SearchCard({data :{card : {card : {info , restaurant : {info:res}}}}}) 
 
             <div className="w-[35%] h-[75%] relative">
             <img className="rounded-2xl w-[156px] h-[130px] aspect-square" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
-            <AddToCartButton resInfo={res} info={info}/>
+            {/* <AddToCartButton  info={info} resInfo={resInfo} /> */}
+            <AddToCartButton  info={info} resInfo={resInfo}/>
             </div>
           </div>
 

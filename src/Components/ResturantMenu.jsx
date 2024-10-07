@@ -390,7 +390,7 @@ function MenuDetails ({itemCards , resInfo}){
 
 function MenuDetailsCard({info , resInfo}) { 
         
-  const {name ,defaultPrice, price ,finalPrice, itemAttribute : {vegClassifier}, ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId , isVeg} = info;
+  const {name ,defaultPrice, price ,finalPrice, itemAttribute , ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId , isVeg = 0} = info;
 
 
 
@@ -431,14 +431,14 @@ function MenuDetailsCard({info , resInfo}) {
 
 
 
-  function handleDiffRes(){
-    setdiffRes((prev)=>!prev)
-  }
-  function handleClearCart(){
-    dispatch(clearCart())
-    handleDiffRes()
-    toast.success("Your Cart Is Cleared")
-  }
+  // function handleDiffRes(){
+  //   setdiffRes((prev)=>!prev)
+  // }
+  // function handleClearCart(){
+  //   dispatch(clearCart())
+  //   handleDiffRes()
+  //   toast.success("Your Cart Is Cleared")
+  // }
   
   
   
@@ -449,7 +449,7 @@ function MenuDetailsCard({info , resInfo}) {
     {/* {
       vegClassifier === "VEG" ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" alt="" /> : <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png" alt="" />
     } */}
-    <img className="w-4" src={isVeg || vegClassifier && isVeg == 1 || vegClassifier === "VEG" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png"} alt="" />
+    <img className="w-4" src={isVeg === 1 ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh71sfIQVPk_TuhnuWB0Q1E6FlciHqRH-wRA&s" : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/768px-Non_veg_symbol.svg.png"} alt="" />
     <h1 className="font-bold text-lg">{name}</h1>
     <p className="font-bold text-lg">₹{defaultPrice /100 || price /100 || finalPrice /100}</p>
 
@@ -479,7 +479,7 @@ function MenuDetailsCard({info , resInfo}) {
 
  <hr className="my-5"/> 
 
- {
+ {/* {
   diffRes && 
   (
     <div className="fixed w-[520px] h-[210px] p-10 border shadow-2xl duration-500 border-black z-40 md:left-1/2 md:-translate-x-1/2  bottom-10 bg-white"> 
@@ -491,7 +491,7 @@ function MenuDetailsCard({info , resInfo}) {
       </div>
     </div>
   )
- }
+ } */}
 
  </div>   
 
