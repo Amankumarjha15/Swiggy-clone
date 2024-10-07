@@ -29,10 +29,9 @@ function Body() {
     setResultData(result?.data?.cards[0]?.card?.card?.title)
 
     setTopResturant(result?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    // console.log(result)
+ 
     setonYourMind(result?.data?.cards[0]?.card?.card?.imageGridCards?.info);
-    // console.log(result?.data?.cards[0]?.card?.card?.imageGridCards?.info)
-    // console.log(result?.data?.cards[2]?.card?.card?.title)
+    
     setOnlineTitle(result?.data?.cards[2]?.card?.card?.title);
     setTopResTitle(result?.data?.cards[1]?.card?.card?.header?.title);
   }
@@ -40,14 +39,11 @@ function Body() {
     fetchData()
   },[lat , lng])
   
-  // console.log(ResultData)
-  // console.log(result)
-  
-  console.log(topResturant)
+
 
 
 const filterVal = useSelector((state)=>state.filterSlice.filterVal)
-// console.log(filterVal)
+
 
 const filteredData = topResturant.filter((item) => {
   if (!filterVal) return true;
