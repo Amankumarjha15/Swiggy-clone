@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import Cart from "./Components/Cart"
 import { useSelector } from "react-redux"
 import LoginPage from "./Components/LoginBtn"
+import Search from "./Components/Search"
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
                                   <Route path="/" element={<Body/>}/>
                                   <Route path="/ResturantMenu/:id" element={<ResturantMenu/>}/>
                                   <Route path="/cart" element={<Cart/>}/>
+                                  <Route path="/search" element={<Search/>}/>
                                   <Route path="*" element={<h1>Coming Soon .......</h1>}/>
                                   </Route>  
                               </Routes>

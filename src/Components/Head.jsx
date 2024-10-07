@@ -173,7 +173,7 @@ async function fetchLatAndLng(id){
 
             <p className=""> <span className='font-bold border-b-2 border-black'>others</span></p>
             <p className='text-xs opacity-75 line-clamp-1 mt-1 ml-2 max-w-[300px]'>{Address}</p>
-            <i class="fi text-orange-500 text-2xl mt-2 fi-rs-angle-small-down"></i>
+            <i className="fi text-orange-500 text-2xl mt-2 fi-rs-angle-small-down"></i>
 
        </div>
     </div>
