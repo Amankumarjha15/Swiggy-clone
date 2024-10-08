@@ -19,6 +19,7 @@ setactiveBtn(activeBtn === filterName ? null : filterName)
 dispatch(setFilterValue(activeBtn))
 
   return (
+    Data&&
     <>
       <div>
         <div className="my-8">

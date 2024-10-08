@@ -30,6 +30,7 @@ function TopResturant({Data =[] , title}) {
     setValue((prev)=>prev - 40)
   }
   return (
+    Data&&
     <div className='mt-10  w-full'>
           <div className='flex justify-between mt-5'>
                 <p className='font-bold text-2xl'>{title}</p>

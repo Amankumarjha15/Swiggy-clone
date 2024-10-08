@@ -25,6 +25,7 @@ function OnYourMind({Data}) {
     }
 
   return (
+    Data&&
     <>
      <div className='flex justify-between mt-5'>
                 <p className='font-bold text-2xl'>What's on your mind?</p>
