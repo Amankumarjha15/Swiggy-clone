@@ -244,7 +244,9 @@ async function fetchLatAndLng(id){
       </div>
     <Outlet/>
     </div>
+    <div>
     <Footer/>
+    </div>
     </>
   )
 }
