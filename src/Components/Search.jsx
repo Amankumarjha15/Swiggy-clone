@@ -60,7 +60,7 @@ function Search() {
 
 
   return (
-    <div className='w-[90%]  xl:w-[70%] mx-auto'>
+    <div className='w-[90%] h-[calc(100vh-15rem)]  xl:w-[70%] mx-auto'>
 
     <input  onKeyDown={handleSearchData} className='w-full p-6 my-10 border-2 focus:outline-none border-black ' type="text" placeholder='Search Your Favorite Food From Here' />
 

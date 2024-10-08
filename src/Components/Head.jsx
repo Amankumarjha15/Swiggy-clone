@@ -4,6 +4,7 @@ import { CartContext, Coordinates, Visibility } from '../context/contextApi'
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLogin, toogleSearchBar} from '../utils/toogleSlice';
 import LoginBtn from './LoginBtn';
+import Footer from './Footer';
 
 
 
@@ -243,6 +244,7 @@ async function fetchLatAndLng(id){
       </div>
     <Outlet/>
     </div>
+    <Footer/>
     </>
   )
 }
