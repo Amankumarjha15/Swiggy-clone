@@ -1,4 +1,4 @@
-// import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa6";
 
 function Footer() {
     return (
@@ -24,10 +24,10 @@ function Footer() {
 
 
                     <div className="flex text-white text-xl gap-3 p-2">
-                        {/* <FaFacebookF />
+                        <FaFacebookF />
                         <FaInstagram />
                         <FaTwitter />
-                        <FaYoutube /> */}
+                        <FaYoutube />
 
                     </div>
                 </div>
