@@ -27,17 +27,84 @@ function ResturantMenu() {
         
         let Data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`);
         let res = await Data.json();
-        setResInfo(res?.data?.cards[2]?.card?.card?.info);
-        setDiscountData(
-          res?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
-        );
 
 
-        let actualMenu = (res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.itemCards || data?.card?.card.categories)
-        setmenuData(actualMenu);
 
-        setTopPicksData((res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.title == "Top Picks")[0])
-        // console.log((res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.title == "Top Picks")[0])
+
+
+
+
+
+
+        
+        const resInfo = res?.data?.cards.find((data) =>
+          data?.card?.card?.["@type"].includes("food.v2.Restaurant")
+      )?.card?.card?.info;
+
+      // console.log(resInfo);
+
+      const discountInfo = res?.data?.cards.find((data) =>
+          data?.card?.card?.["@type"].includes("v2.GridWidget")
+      )?.card?.card?.gridElements?.infoWithStyle?.offers;
+
+      setResInfo(resInfo);
+      setDiscountData(discountInfo);
+
+      let actualMenu = res?.data?.cards.find((data) => data?.groupedCard);
+
+      // console.log(res);
+
+      setTopPicksData(
+          (actualMenu?.groupedCard?.cardGroupMap?.REGULAR?.cards).filter(
+              (data) => data.card.card.title == "Top Picks"
+          )[0]
+      );
+
+      setmenuData(
+          actualMenu?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+              (data) =>
+                  data?.card?.card?.itemCards || data?.card?.card?.categories
+          )
+      );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // setResInfo(res?.data?.cards[2]?.card?.card?.info);
+        // setDiscountData(
+        //   res?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
+        // );
+
+
+        // let actualMenu = (res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.itemCards || data?.card?.card.categories)
+        // setmenuData(actualMenu);
+
+        // setTopPicksData((res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.title == "Top Picks")[0])
+        // // console.log((res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)?.filter(data=>data?.card?.card.title == "Top Picks")[0])
        
   }
 
