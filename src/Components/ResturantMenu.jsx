@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart , deleteItem ,clearCart } from "../utils/cartSlice";
 import toast from "react-hot-toast";
 import AddToCartButton from "./AddToCartButton";
+import { MenuShimmer } from "./Shimmer";
 
 function ResturantMenu() {
   const { id } = useParams();
@@ -27,6 +28,14 @@ function ResturantMenu() {
         
         let Data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`);
         let res = await Data.json();
+
+
+
+
+
+
+
+
 
 
 
@@ -136,236 +145,245 @@ function handleNext (){
 
 
   return (
-    <div className="w-full">
-      <div className="w-[95%] xl:w-1/2 mx-auto pt-8">
-        <p className="text-sm hover:cursor-pointer text-slate-700 hover:text-black">
-          <Link to={"/"}>Home </Link>/ <Link to={"/"}>{resInfo.city}</Link> /{" "}
-          {resInfo.name}
-        </p>
-        <h1 className="font-bold pt-6 text-2xl">{resInfo?.name}</h1>
-        <div className="w-full h-[206px] bg-gradient-to-t from-slate-200/70 mt-3 p-4 rounded-[30px]">
-          <div className="w-full h-full bg-white border-slate-200/70 rounded-[30px]">
-            <div className="p-4">
-              <div className="flex items-center gap-1 font-semibold">
-                <i className="fi mt-1 text-green-600 fi-ss-circle-star"></i>
-                <span>{resInfo?.avgRating}</span>
-                <span>({resInfo?.totalRatingsString})</span>.
-                <span>{resInfo.costForTwoMessage}</span>
-              </div>
+    <>
 
-              <p className="underline font-semibold text-orange-600">
-                {resInfo?.cuisines?.join(", ")}
-              </p>
+    {
+      MenuData.length ? (
 
-              <div className="mt-2 flex gap-1">
-                <div className="w-[7px] flex flex-col justify-center items-center">
-                  <div className="w-[7px] h-[7px] rounded-full bg-gray-400"></div>
-                  <div className="w-[1px] h-[25px] bg-gray-400"></div>
-                  <div className="w-[7px] h-[7px] rounded-full bg-gray-400"></div>
-                </div>
-                <div className="flex flex-col gap-2 text-sm font-semibold">
-                  <p className="flex gap-3">
-                    Outlet
-                    <span className="text-gray-400 font-normal">
-                      {resInfo.locality}
-                    </span>
+        <div className="w-full">
+          <div className="w-[95%] xl:w-1/2 mx-auto pt-8">
+            <p className="text-sm hover:cursor-pointer text-slate-700 hover:text-black">
+              <Link to={"/"}>Home </Link>/ <Link to={"/"}>{resInfo.city}</Link> /{" "}
+              {resInfo.name}
+            </p>
+            <h1 className="font-bold pt-6 text-2xl">{resInfo?.name}</h1>
+            <div className="w-full h-[206px] bg-gradient-to-t from-slate-200/70 mt-3 p-4 rounded-[30px]">
+              <div className="w-full h-full bg-white border-slate-200/70 rounded-[30px]">
+                <div className="p-4">
+                  <div className="flex items-center gap-1 font-semibold">
+                    <i className="fi mt-1 text-green-600 fi-ss-circle-star"></i>
+                    <span>{resInfo?.avgRating}</span>
+                    <span>({resInfo?.totalRatingsString})</span>.
+                    <span>{resInfo.costForTwoMessage}</span>
+                  </div>
+    
+                  <p className="underline font-semibold text-orange-600">
+                    {resInfo?.cuisines?.join(", ")}
                   </p>
-                  <p>{resInfo?.sla?.slaString}</p>
-                </div>
-              </div>
-            </div>
-
-            <hr className="" />
-
-            {/* <div className="w-full">
-              <div className="flex items-center p-4 gap-4">
-                <img
-                  className="w-7"
-                  src={
-                    "https://media-assets.swiggy.com/swiggy/image/uploa…uto,w_40,h_40/"+resInfo?.feeDetails?.icon
-                  }
-                  alt="logo"
-                />
-                <span className="font-normal text-sm text-gray-500 ">
-                  {resInfo?.feeDetails?.message?.replace(/<[^>]*>/g, "")}
-                </span>
-              </div>
-            </div> */}
-
-
-
-
-        </div>
-        </div>
-
-
-
-
-
-
-
-          <div className="w-full">
-
-            <div className="flex justify-between mt-8">
-              <p className="font-bold text-xl">Deals For You</p>
-              <div className="flex gap-3">
-                <div
-                  onClick={handlePrev}
-                  className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
-                >
-                  <i className="fi text-2xl mt-1 fi-rr-arrow-small-left"></i>
-                </div>
-                <div
-                  onClick={handleNext}
-                  className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
-                >
-                  <i className="fi text-2xl mt-1 fi-rr-arrow-small-right"></i>
-                </div>
-              </div>
-            </div>
-     
-            <div className="flex gap-4 mt-5 overflow-hidden">
-            {
-                discountData.map((data)=>(
-                     <Discount data={data}/>
-                ))
-            }
-
-           </div>
-
-
-            </div>
-
-
-
-
-
-
-
-
-            <h2 className="text-center mt-10 font-bold">MENU</h2>
-
-
-
-            <div className="w-full mt-6 relative cursor-pointer">
-              <div className="w-full p-3 rounded-xl font-semibold text-lg bg-slate-200 text-center">Search For Dishes ?</div>
-              <i className="fi fi-rr-search absolute top-3 right-4 text-xl"></i>
-            </div>
-
-
-
-
-
-
-
-
-        <div>
-         { 
-         TopPicksData && 
-          <div className="w-full">
-
-            <div className="flex justify-between mt-8">
-              <p className="font-bold text-xl">{TopPicksData?.card?.card?.title}</p>
-              <div className="flex gap-3">
-                <div
-                  onClick={handlePrev}
-                  className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
-                >
-                  <i className="fi text-2xl mt-1 fi-rr-arrow-small-left"></i>
-                </div>
-                <div
-                  onClick={handleNext}
-                  className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
-                >
-                  <i className="fi text-2xl mt-1 fi-rr-arrow-small-right"></i>
-                </div>
-              </div>
-            </div>
-     
-            <div className="flex gap-4 mt-5 overflow-hidden">
-            {
-              TopPicksData && 
-                TopPicksData.card?.card?.carousel.map(({creativeId , dish : { info : {defaultPrice , price}}}) =>{ 
-                  return(
-                    <div className="min-w-[400px] h-[405px] relative">
-                      <img className="w-full h-full" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/" + creativeId} alt="" />
-                      <div className="absolute bottom-4 text-white flex justify-between w-full px-5">
-                        <p className="font-bold">₹ {defaultPrice /100 || price /100}</p>
-                        <button className="px-10 py-2 font-bold text-green-700 bg-white rounded-xl">ADD</button>
-                      </div>
+    
+                  <div className="mt-2 flex gap-1">
+                    <div className="w-[7px] flex flex-col justify-center items-center">
+                      <div className="w-[7px] h-[7px] rounded-full bg-gray-400"></div>
+                      <div className="w-[1px] h-[25px] bg-gray-400"></div>
+                      <div className="w-[7px] h-[7px] rounded-full bg-gray-400"></div>
                     </div>
-                )})
-            }
-
-           </div>
-
-
-            </div>
-         }
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* <div>
-                {
-                    MenuData && MenuData.map(({card : {card : {itemCards, title}}},i)=>(
-                    <div>
-              <div className="flex justify-between ">
-                      <h1>{title} ({itemCards?.length})</h1>
-                       <i className="fi text-2xl fi-rr-angle-small-down" onClick={()=>tooglefun(i)}></i> 
-              </div>
-                    { 
-                       currIndex === i &&
-                      <div className="m-10">
-                      {
-                        itemCards.map(({card : {info}})=>(
-                          <h1>{info?.name}</h1>
-                        ))
+                    <div className="flex flex-col gap-2 text-sm font-semibold">
+                      <p className="flex gap-3">
+                        Outlet
+                        <span className="text-gray-400 font-normal">
+                          {resInfo.locality}
+                        </span>
+                      </p>
+                      <p>{resInfo?.sla?.slaString}</p>
+                    </div>
+                  </div>
+                </div>
+    
+                <hr className="" />
+    
+                {/* <div className="w-full">
+                  <div className="flex items-center p-4 gap-4">
+                    <img
+                      className="w-7"
+                      src={
+                        "https://media-assets.swiggy.com/swiggy/image/uploa…uto,w_40,h_40/"+resInfo?.feeDetails?.icon
                       }
-                      </div>}
-                    </div>
-                 ))
-                }
-            </div> */}
-
-
-            <div>
-            {
-              MenuData && MenuData.map(({card : {card}})=>(
-                <MenuCard card={card} resInfo={resInfo}/>
-              ))
-            }
+                      alt="logo"
+                    />
+                    <span className="font-normal text-sm text-gray-500 ">
+                      {resInfo?.feeDetails?.message?.replace(/<[^>]*>/g, "")}
+                    </span>
+                  </div>
+                </div> */}
+    
+    
+    
+    
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-        </div>
-      </div>
+            </div>
+    
+    
+    
+    
+    
+    
+    
+              <div className="w-full">
+    
+                <div className="flex justify-between mt-8">
+                  <p className="font-bold text-xl">Deals For You</p>
+                  <div className="flex gap-3">
+                    <div
+                      onClick={handlePrev}
+                      className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
+                    >
+                      <i className="fi text-2xl mt-1 fi-rr-arrow-small-left"></i>
+                    </div>
+                    <div
+                      onClick={handleNext}
+                      className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
+                    >
+                      <i className="fi text-2xl mt-1 fi-rr-arrow-small-right"></i>
+                    </div>
+                  </div>
+                </div>
+         
+                <div className="flex gap-4 mt-5 overflow-hidden">
+                {
+                    discountData.map((data)=>(
+                         <Discount data={data}/>
+                    ))
+                }
+    
+               </div>
+    
+    
+                </div>
+    
+    
+    
+    
+    
+    
+    
+    
+                <h2 className="text-center mt-10 font-bold">MENU</h2>
+    
+    
+    
+                <div className="w-full mt-6 relative cursor-pointer">
+                  <div className="w-full p-3 rounded-xl font-semibold text-lg bg-slate-200 text-center">Search For Dishes ?</div>
+                  <i className="fi fi-rr-search absolute top-3 right-4 text-xl"></i>
+                </div>
+    
+    
+    
+    
+    
+    
+    
+    
+            <div>
+             { 
+             TopPicksData && 
+              <div className="w-full">
+    
+                <div className="flex justify-between mt-8">
+                  <p className="font-bold text-xl">{TopPicksData?.card?.card?.title}</p>
+                  <div className="flex gap-3">
+                    <div
+                      onClick={handlePrev}
+                      className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
+                    >
+                      <i className="fi text-2xl mt-1 fi-rr-arrow-small-left"></i>
+                    </div>
+                    <div
+                      onClick={handleNext}
+                      className="cursor-pointer bg-gray-200 rounded-full w-9 h-9 flex justify-center items-center"
+                    >
+                      <i className="fi text-2xl mt-1 fi-rr-arrow-small-right"></i>
+                    </div>
+                  </div>
+                </div>
+         
+                <div className="flex gap-4 mt-5 overflow-hidden">
+                {
+                  TopPicksData && 
+                    TopPicksData.card?.card?.carousel.map(({creativeId , dish : { info : {defaultPrice , price}}}) =>{ 
+                      return(
+                        <div className="min-w-[400px] h-[405px] relative">
+                          <img className="w-full h-full" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/" + creativeId} alt="" />
+                          <div className="absolute bottom-4 text-white flex justify-between w-full px-5">
+                            <p className="font-bold">₹ {defaultPrice /100 || price /100}</p>
+                            <button className="px-10 py-2 font-bold text-green-700 bg-white rounded-xl">ADD</button>
+                          </div>
+                        </div>
+                    )})
+                }
+    
+               </div>
+    
+    
+                </div>
+             }
+            </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                {/* <div>
+                    {
+                        MenuData && MenuData.map(({card : {card : {itemCards, title}}},i)=>(
+                        <div>
+                  <div className="flex justify-between ">
+                          <h1>{title} ({itemCards?.length})</h1>
+                           <i className="fi text-2xl fi-rr-angle-small-down" onClick={()=>tooglefun(i)}></i> 
+                  </div>
+                        { 
+                           currIndex === i &&
+                          <div className="m-10">
+                          {
+                            itemCards.map(({card : {info}})=>(
+                              <h1>{info?.name}</h1>
+                            ))
+                          }
+                          </div>}
+                        </div>
+                     ))
+                    }
+                </div> */}
+    
+    
+                <div>
+                {
+                  MenuData && MenuData.map(({card : {card}})=>(
+                    <MenuCard card={card} resInfo={resInfo}/>
+                  ))
+                }
+                </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+              
+            </div>
+          </div>
+      ) : <MenuShimmer/>
+    }
+    
+  </>
   );
 }
 

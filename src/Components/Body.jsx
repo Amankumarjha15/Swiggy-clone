@@ -5,6 +5,7 @@ import TopResturant from './TopResturant';
 import OnlineFoodDelhivery from './OnlineFoodDelhivery';
 import { Coordinates } from '../context/contextApi';
 import { useSelector } from "react-redux";
+import Shimmer from './Shimmer';
 
 
 function Body() {
@@ -27,7 +28,7 @@ function Body() {
     const result = await Data.json();
 
 
-    console.log(result)
+    // console.log(result)
 
     setResultData(result?.data?.cards[0]?.card?.card?.title)
 
@@ -40,9 +41,16 @@ function Body() {
   )?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
 
-    let onminddata = result?.data?.cards.find(
-      (data) => data?.card?.card?.id == "whats_on_your_mind"
-  )?.card?.card?.imageGridCards?.info;
+  //   let onminddata = result?.data?.cards.find(
+  //     (data) => data?.card?.card?.id == "whats_on_your_mind"
+  // )?.card?.card?.imageGridCards?.info;
+
+
+  let onminddata = result?.data?.cards.find(
+    (data) => data?.card?.card?.id == "whats_on_your_mind"
+)?.card?.card?.imageGridCards?.info;
+
+// console.log(data2)
 
     setTopResturant(mainData || mainData2);
 
@@ -97,11 +105,18 @@ const filteredData = topResturant.filter((item) => {
 
   return (
     <div className='w-full'>
+      {
+        topResturant.length ? (
+
         <div className='w-[90%] xl:w-[80%] mt-3 mx-auto overflow-hidden'>
-        <OnYourMind Data={onYourMind}/>
-        <TopResturant Data={topResturant} title={TopResTitle}/>
-        <OnlineFoodDelhivery Data={filterVal ? filteredData : topResturant} title={OnlineTitle}/>
+         
+              <OnYourMind Data={onYourMind}/>
+              <TopResturant Data={topResturant} title={TopResTitle}/>
+              <OnlineFoodDelhivery Data={filterVal ? filteredData : topResturant} title={OnlineTitle}/>
+          
         </div>
+        ) : <Shimmer/>
+      }
     </div>
   )
 }
