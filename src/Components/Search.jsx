@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Coordinates } from '../context/contextApi'
 import AddToCartButton from './AddToCartButton';
 import SearchCard from './SearchCard';
+import { SearchShimmer } from './Shimmer';
 
 function Search() {
 
@@ -10,6 +11,7 @@ function Search() {
 
   const [SearchQuery, setSearchQuery] = useState("")
   const [DishesData, setDishesData] = useState([])
+  const [Shimmer, setShimmer] = useState(false)
 
 
 
@@ -28,12 +30,13 @@ function Search() {
     
     
     async function searchDishes(){
-      
+      setShimmer(true)
       
       const data = await fetch(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${SearchQuery}&trackingId=undefined&submitAction=SUGGESTION&queryUniqueId=1f6a9f85-0bb6-1196-a8f2-7d906de8fdba&metaData=%7B%22type%22%3A%22DISH%22%2C%22data%22%3A%7B%22vegIdentifier%22%3A%22NA%22%2C%22cloudinaryId%22%3A%22z5s9vrflt9bnyqwgvbo3%22%2C%22dishFamilyId%22%3A%22846647%22%2C%22dishFamilyIds%22%3A%5B%22846647%22%5D%7D%2C%22businessCategory%22%3A%22SWIGGY_FOOD%22%2C%22displayLabel%22%3A%22Dish%22%7D`)
     // const data = await fetch(`https://www.swiggy.com/mapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${SearchQuery}&trackingId=2043d270-9fee-2ece-b020-e3bbbcc2fd6e&submitAction=ENTER&queryUniqueId=ce0c96b8-63c1-36f8-4453-41a9c306f520`)
     const res = await data.json()
     const finalData =(res?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards.filter(data => data?.card?.card?.info))
+    setShimmer(false)
     setDishesData(finalData)
     console.log(finalData)
   }
@@ -68,10 +71,12 @@ function Search() {
 
   
      
-     
-<div className='grid grid-cols-1 md:grid-cols-2 bg-[#f4f5f7]'>
 {
-  DishesData&&
+  Shimmer ? <SearchShimmer/> :
+<div className='grid  grid-cols-1 md:grid-cols-2 bg-[#f4f5f7]'>
+{
+  
+
    DishesData.map((data)=>(
      
 <SearchCard data={data}/>
@@ -115,9 +120,11 @@ function Search() {
 
   )
    )
+ 
 
 }
      </div>
+}
 
 
 

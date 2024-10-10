@@ -14,6 +14,7 @@ function SearchCard({data :{card : {card : {info , restaurant : {info:resInfo}}}
 
 
   return (
+    
    <>
    
    

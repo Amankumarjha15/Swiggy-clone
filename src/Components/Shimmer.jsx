@@ -52,3 +52,21 @@ export function MenuShimmer() {
         </div>
     );
 }
+
+
+
+
+
+export function SearchShimmer() {
+
+return(
+
+    <div className='grid  grid-cols-1 md:grid-cols-2 bg-[#f4f5f7]'>
+         {
+                Array(4).fill("").map(()=>(<div  className='w-[90%] h-[250px] m-5 animate bg-white text-black rounded-3xl'></div>))
+         }
+    </div>
+   
+)
+
+}
