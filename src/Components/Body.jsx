@@ -6,7 +6,7 @@ import OnlineFoodDelhivery from './OnlineFoodDelhivery';
 import { Coordinates } from '../context/contextApi';
 import { useSelector } from "react-redux";
 import Shimmer from './Shimmer';
-import useRestaurantData from '../../Hooks/useRestaurantData';
+import useRestaurantData from '../Hooks/useRestaurantData';
 
 
 function Body() {
