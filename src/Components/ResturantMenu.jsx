@@ -26,7 +26,7 @@ function ResturantMenu() {
 
   async function FetchMenu() {
         
-        let Data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`);
+        let Data = await fetch(`${import.meta.env.VITE_BASE_URL}/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`);
         let res = await Data.json();
 
 
@@ -240,8 +240,8 @@ function handleNext (){
          
                 <div className="flex gap-4 mt-5 overflow-hidden">
                 {
-                    discountData.map((data)=>(
-                         <Discount data={data}/>
+                    discountData.map((data,i)=>(
+                         <Discount key={i} data={data}/>
                     ))
                 }
     
@@ -299,9 +299,9 @@ function handleNext (){
                 <div className="flex gap-4 mt-5 overflow-hidden">
                 {
                   TopPicksData && 
-                    TopPicksData.card?.card?.carousel.map(({creativeId , dish : { info : {defaultPrice , price}}}) =>{ 
+                    TopPicksData.card?.card?.carousel.map(({creativeId , dish : { info : {defaultPrice , price}}},i) =>{ 
                       return(
-                        <div className="min-w-[400px] h-[405px] relative">
+                        <div key={i} className="min-w-[400px] h-[405px] relative">
                           <img className="w-full h-full" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/" + creativeId} alt="" />
                           <div className="absolute bottom-4 text-white flex justify-between w-full px-5">
                             <p className="font-bold">₹ {defaultPrice /100 || price /100}</p>
@@ -354,8 +354,8 @@ function handleNext (){
     
                 <div>
                 {
-                  MenuData && MenuData.map(({card : {card}})=>(
-                    <MenuCard card={card} resInfo={resInfo}/>
+                  MenuData && MenuData.map(({card : {card}},i)=>(
+                    <MenuCard key={i} card={card} resInfo={resInfo}/>
                   ))
                 }
                 </div>
@@ -447,8 +447,8 @@ if(card.itemCards){
     <div>
     <h1 className="font-bold text-xl">{card.title}</h1>
     {
-      categories.map((data)=>(
-        <MenuCard card={data} resInfo={resInfo}/>
+      categories.map((data,i)=>(
+        <MenuCard key={i} card={data} resInfo={resInfo}/>
       ))
     }
     </div>
@@ -463,8 +463,8 @@ function MenuDetails ({itemCards , resInfo}){
   return(
     <div className="my-5">
     {
-      itemCards.map(({card : {info}})=>(
-        <MenuDetailsCard info={info} resInfo={resInfo}/>
+      itemCards.map(({card : {info}},i)=>(
+        <MenuDetailsCard key={i} info={info} resInfo={resInfo}/>
       ))
     }
   </div>

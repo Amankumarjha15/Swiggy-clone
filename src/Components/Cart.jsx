@@ -117,7 +117,7 @@ function handleRemove(i){
            { 
            cartData &&
             cartData.map(({name ,defaultPrice, price ,finalPrice, itemAttribute , ratings :{aggregatedRating : {rating ,ratingCountV2}}, description , imageId , isVeg = 0} , i)=>(
-              <>
+              <div key={imageId}>
               <div className='flex p-2 md:p-5 gap-4'>
               <div className="w-[60%] md:w-[80%]">
               
@@ -146,7 +146,7 @@ function handleRemove(i){
              </div>  
             
              <hr className="my-5"/> 
-             </>
+             </div>
             ))
            }
 

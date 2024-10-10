@@ -32,7 +32,7 @@ function Search() {
     async function searchDishes(){
       setShimmer(true)
       
-      const data = await fetch(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${SearchQuery}&trackingId=undefined&submitAction=SUGGESTION&queryUniqueId=1f6a9f85-0bb6-1196-a8f2-7d906de8fdba&metaData=%7B%22type%22%3A%22DISH%22%2C%22data%22%3A%7B%22vegIdentifier%22%3A%22NA%22%2C%22cloudinaryId%22%3A%22z5s9vrflt9bnyqwgvbo3%22%2C%22dishFamilyId%22%3A%22846647%22%2C%22dishFamilyIds%22%3A%5B%22846647%22%5D%7D%2C%22businessCategory%22%3A%22SWIGGY_FOOD%22%2C%22displayLabel%22%3A%22Dish%22%7D`)
+      const data = await fetch(`${import.meta.env.VITE_BASE_URL}/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${SearchQuery}&trackingId=undefined&submitAction=SUGGESTION&queryUniqueId=1f6a9f85-0bb6-1196-a8f2-7d906de8fdba&metaData=%7B%22type%22%3A%22DISH%22%2C%22data%22%3A%7B%22vegIdentifier%22%3A%22NA%22%2C%22cloudinaryId%22%3A%22z5s9vrflt9bnyqwgvbo3%22%2C%22dishFamilyId%22%3A%22846647%22%2C%22dishFamilyIds%22%3A%5B%22846647%22%5D%7D%2C%22businessCategory%22%3A%22SWIGGY_FOOD%22%2C%22displayLabel%22%3A%22Dish%22%7D`)
     // const data = await fetch(`https://www.swiggy.com/mapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${SearchQuery}&trackingId=2043d270-9fee-2ece-b020-e3bbbcc2fd6e&submitAction=ENTER&queryUniqueId=ce0c96b8-63c1-36f8-4453-41a9c306f520`)
     const res = await data.json()
     const finalData =(res?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards.filter(data => data?.card?.card?.info))
@@ -77,9 +77,9 @@ function Search() {
 {
   
 
-   DishesData.map((data)=>(
+   DishesData.map((data,i)=>(
      
-<SearchCard data={data}/>
+<SearchCard key={i} data={data}/>
 
       // <div className='w-[90%] h-[250px] m-5 bg-white text-black rounded-3xl'>
       //      <div className="h-[30%] border-b-4 flex justify-between mx-5 items-center gap-3">

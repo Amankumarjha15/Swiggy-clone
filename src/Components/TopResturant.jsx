@@ -46,8 +46,8 @@ function TopResturant({Data =[] , title}) {
             <div className={`flex mt-4 gap-5  w-full duration-300`} style={{translate : `-${Value}%`}}>
                 {  
                 Data &&
-                Data.map((restaurant)=>(
-      <div className='hover:scale-95 duration-200'> 
+                Data.map((restaurant,i)=>(
+      <div key={i} className='hover:scale-95 duration-200'> 
           {/* <div className='min-w-[295px] h-[182px] relative'>
 
               <img className='w-full h-full object-cover rounded-2xl' src={"https://media-assets.swiggy.com/swiggy/image/upload/"+restaurant?.info?.cloudinaryImageId} alt="" />

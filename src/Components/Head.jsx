@@ -48,7 +48,7 @@ const navItems = [
 
 
 async function searchResultFun(value){
-  const res = await fetch(`https://www.swiggy.com/dapi/misc/place-autocomplete?input=${value}`)
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/misc/place-autocomplete?input=${value}`)
   const data = await res.json();
   // console.log(data)
   setsearchResult(data?.data)
@@ -57,7 +57,7 @@ async function searchResultFun(value){
 async function fetchLatAndLng(id){
   handleVisibility();
   // console.log(id)
-  const res = await fetch(`https://www.swiggy.com/dapi/misc/address-recommend?place_id=${id}`)
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/misc/address-recommend?place_id=${id}`)
   const data = await res.json();
   setCoord({
     lat : data?.data[0]?.geometry?.location.lat ,
@@ -99,8 +99,8 @@ async function fetchLatAndLng(id){
           <ul className='border border-gray-600 p-7 shadow-2xl'>
             {
               searchResult &&
-              searchResult.map((data)=>(
-                <div className='cursor-pointer ' onClick={()=>fetchLatAndLng(data.place_id)}>
+              searchResult.map((data,i)=>(
+                <div key={i} className='cursor-pointer ' onClick={()=>fetchLatAndLng(data.place_id)}>
                   <div className='flex gap-5 border-b m-5 border-gray-300'>
                       <i className="fi mt-1 fi-sr-location-arrow"></i>
                       <li className='mb-3'>
@@ -183,9 +183,9 @@ async function fetchLatAndLng(id){
            {
              navItems.map((data,i)=>(
               data.name == "Log In" ? 
-              <>
+              <div key={i}>
               <div className='hidden lg:flex' onClick={handleLogin}>
-              <div className='flex items-center gap-3 cursor-pointer' key={i}>
+              <div className='flex items-center gap-3 cursor-pointer'>
                 { userData ? <img className='w-10 rounded-full' src={userData.photo} alt="" /> :
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
               <p className='text-lg text-gray-500 font-medium'>{userData ? userData.name : data.name}</p>
@@ -193,17 +193,17 @@ async function fetchLatAndLng(id){
             </div> 
 
             <div className='lg:hidden' onClick={handleLogin}>
-              <div className='flex items-center gap-3 cursor-pointer ' key={i}>
+              <div className='flex items-center gap-3 cursor-pointer '>
                 { userData ? <img className='w-10 rounded-full' src={userData.photo} alt="" /> :
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>}
             </div>
             </div> 
-            </>
+            </div>
             : 
-            <>
+            <div key={i}>
             <div className="hidden lg:flex">
              <Link to={data.path}>
-              <div className='flex items-center gap-3' key={i}>
+              <div className='flex items-center gap-3'>
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
               <p className='text-lg text-gray-500 font-medium'>{data.name}</p>
               {
@@ -216,7 +216,7 @@ async function fetchLatAndLng(id){
 
             <div className="lg:hidden">
              <Link to={data.path}>
-              <div className='flex items-center gap-3' key={i}>
+              <div className='flex items-center gap-3'>
               <i className={"mt-1 text-xl fi text-gray-500 " + data.image}></i>
               {
                cartData == 0 ? "" :
@@ -226,7 +226,7 @@ async function fetchLatAndLng(id){
             </Link> 
             </div>
 
-            </>
+            </div>
             ))
             
            }

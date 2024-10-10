@@ -27,11 +27,13 @@ dispatch(setFilterValue(activeBtn))
               <div className="my-7 flex flex-wrap gap-3">
                 {
                   filterOptions &&
-                  filterOptions.map((Name)=>(
+                  filterOptions.map((Name,i)=>(
+                    <div key={i}>
                     <button onClick={()=>handleFilterBtn(Name)} className={"filterBtn flex gap-3 shadow-lg "  + (activeBtn === Name ? " bg-gray-200 border border-black" : "")}>
                        <p>{Name}</p>
                        <i className={"fi text-sm mt-1 fi-br-cross-small " + (activeBtn === Name ? "visible" : "hidden")}></i>
                        </button>
+                       </div>
                   ))
                 }
                  {/* <button className='filterBtn'>Rating 4.0+</button>
@@ -43,8 +45,8 @@ dispatch(setFilterValue(activeBtn))
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {
         Data &&
-        Data.map((restaurant) => (
-          <div className="hover:scale-95 duration-200">
+        Data.map((restaurant,i) => (
+          <div key={i} className="hover:scale-95 duration-200">
             <ResturantCard {...restaurant} link={restaurant?.cta?.link}/>
           </div>
         ))}
