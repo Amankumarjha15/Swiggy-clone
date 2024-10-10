@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import OnYourMind from './onYourMind';
+import OnYourMind from './OnYourMind';
 import TopResturant from './TopResturant';
 // import ResturantCard from './ResturantCard';
 import OnlineFoodDelhivery from './OnlineFoodDelhivery';
