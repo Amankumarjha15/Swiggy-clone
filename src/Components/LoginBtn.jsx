@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addUserData,removeUserData } from '../utils/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { toggleLogin } from '../utils/toogleSlice'
+import toast from 'react-hot-toast'
 
 function LoginBtn() {
 
@@ -22,6 +23,7 @@ function LoginBtn() {
         photo : data.user.photoURL
     }
     dispatch(addUserData(userData))
+    toast.success(`Welcome  ${data.user.displayName}`)
     // console.log(userData)
     navigate("/")
     dispatch(toggleLogin())
@@ -31,6 +33,7 @@ function LoginBtn() {
   async function handleAuthremove(){
     await signOut(auth)
     dispatch(removeUserData())
+   toast.error("You're Logged Out")
     navigate("/")
     dispatch(toggleLogin())
   }
