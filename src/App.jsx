@@ -1,17 +1,17 @@
 import { Route, Routes } from "react-router-dom"
 import Body from "./Components/Body"
 import Head from "./Components/Head"
-// import ResturantMenu from "./Components/ResturantMenu"
+import ResturantMenu from "./Components/ResturantMenu"
 import { CartContext, Coordinates, Visibility } from "./context/contextApi"
 import { lazy, Suspense, useEffect, useState } from "react"
 import Cart from "./Components/Cart"
 import { useSelector } from "react-redux"
 import LoginPage from "./Components/LoginBtn"
-// import Search from "./Components/Search"
+import Search from "./Components/Search"
 
 
-const Search = lazy(()=>import("./Components/Search"))
-const ResturantMenu = lazy(()=>import("./Components/ResturantMenu"))
+// const Search = lazy(()=>import("./Components/Search"))
+// const ResturantMenu = lazy(()=>import("./Components/ResturantMenu"))
 
 function App() {
 
