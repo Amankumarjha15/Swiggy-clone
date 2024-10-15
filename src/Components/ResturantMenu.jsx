@@ -119,7 +119,7 @@ function ResturantMenu() {
 
   useEffect(() => {
     FetchMenu()
-  }, [lat , lng]);
+  }, []);
 
 
 

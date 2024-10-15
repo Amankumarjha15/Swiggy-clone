@@ -15,11 +15,11 @@ function Footer() {
                     <div className="footer-logo-cont">
 
 
-                        <span className="font-logo font-extrabold text-4xl">Foodie</span>
+                        <span className="font-logo font-extrabold text-4xl">BHUKHAD</span>
                     </div>
                     <p className="font-light text-sm">
 
-                        © 2024 Bundl Technologies Pvt. Ltd
+                        © 2024 BHUKHAD Technologies Pvt. Ltd
                     </p>
 
 
