@@ -119,9 +119,8 @@ function ResturantMenu() {
 
   useEffect(() => {
     FetchMenu()
-  }, [lat , lng ,mainId]);
+  }, []);
 
-  console.log(resInfo , setmenuData)
 
 
 
