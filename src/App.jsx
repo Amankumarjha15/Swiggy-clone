@@ -42,16 +42,16 @@ function App() {
                         <div className={(loginVisible ? "overflow-hidden max-h-screen" : "") ||(Visible ? "overflow-hidden max-h-screen" : "") }>
                               {/* <Suspense fallback="loading......."> */}
                               <Routes>
-                                  <Route path="/#/" element={<Head/>}>
-                                  <Route path="/#/" element={<Body/>}/>
-                                  <Route path="/#/ResturantMenu/#/:id" element={<ResturantMenu/>}/>
-                                  <Route path="/#/cart" element={<Cart/>}/>
-                                  <Route path="/#/search" element={<Search/>}/>
+                                  <Route path="/" element={<Head/>}>
+                                  <Route path="/" element={<Body/>}/>
+                                  <Route path="/ResturantMenu/:id" element={<ResturantMenu/>}/>
+                                  <Route path="/cart" element={<Cart/>}/>
+                                  <Route path="/search" element={<Search/>}/>
                                   <Route path="*" element={<h1>Coming Soon .......</h1>}/>
                                   </Route>  
                               </Routes>
                               {/* </Suspense> */}
-                              
+
                       </div>
               {/* </Visibility.Provider> */}
         </Coordinates.Provider>
