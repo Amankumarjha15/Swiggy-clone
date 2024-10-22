@@ -21,6 +21,7 @@ function Head() {
 
   const cartData = useSelector((state)=> state.cartSlice.cartItems)
   const userData = useSelector((state)=> state.authSlice.userData)
+  // console.log(userData.photo)
   
   const {setCoord} = useContext(Coordinates);
 
@@ -164,10 +165,10 @@ async function fetchLatAndLng(id){
         
 
            <div className='w-full lg:w-[85%] flex justify-between'>
-    <div className='flex items-center mr-2 md:m-0'>
+    <div className='flex gap-3 items-center mr-2 md:m-0'>
            <Link to={"/"}>
-           <div className='w-14 sm:w-24 hover:scale-105 duration-300 text-center'>
-            <h1 className='font-bold font-black text-orange-700 text-4xl'>B</h1>
+           <div className=' hover:scale-105 duration-300 text-center'>
+            <h1 className='font-bold text-orange-700 shadow-2xl text-4xl'>B</h1>
               {/* <img src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png" alt="" /> */}
            </div>
            </Link>
