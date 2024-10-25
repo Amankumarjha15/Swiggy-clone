@@ -74,7 +74,8 @@ function AddToCartButton({info , resInfo}) {
 
   return (
     <>
-    <button onClick={HandleAddToCart} className="bg-white absolute bottom-[-20px] left-1/2 -translate-x-1/2 text-lg font-bold rounded-2xl border px-5 py-2 drop-shadow text-green-700">ADD</button>
+    <button onClick={HandleAddToCart} >ADD</button>
+    {/* className="bg-white absolute bottom-[-20px] left-1/2 -translate-x-1/2 text-lg font-bold rounded-2xl border px-5 py-2 drop-shadow text-green-700" */}
     {/* <button onClick={HandleAddToCart}  className="bg-white absolute bottom-[20px] left-1/2 -translate-x-1/2 text-lg font-bold rounded-2xl border px-5 py-1 drop-shadow text-green-700">ADD</button> */}
 
 

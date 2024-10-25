@@ -263,8 +263,10 @@ function handleNext (){
     
     
                 <div className="w-full mt-6 relative cursor-pointer">
+                  <Link to={"/search"}>
                   <div className="w-full p-3 rounded-xl font-semibold text-lg bg-slate-200 text-center">Search For Dishes ?</div>
                   <i className="fi fi-rr-search absolute top-3 right-4 text-xl"></i>
+                  </Link>
                 </div>
     
     
@@ -306,7 +308,8 @@ function handleNext (){
                           <img className="w-full h-full" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/" + creativeId} alt="" />
                           <div className="absolute bottom-4 text-white flex justify-between w-full px-5">
                             <p className="font-bold">₹ {defaultPrice /100 || price /100}</p>
-                            <button className="px-10 py-2 font-bold text-green-700 bg-white rounded-xl">ADD</button>
+                            <button className="px-10 py-2 font-bold text-green-700 bg-white rounded-xl"><AddToCartButton/></button>
+                            
                           </div>
                         </div>
                     )})
@@ -557,9 +560,9 @@ function MenuDetailsCard({info , resInfo}) {
 
   </div>
   <div className="w-[35%] md:w-[20%] relative h-full">
-    <img className="rounded-2xl w-[156px] h-[144px] aspect-square" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
-    {/* <button onClick={HandleAddToCart} className="bg-white absolute bottom-[-20px] left-1/2 -translate-x-1/2 text-lg font-bold rounded-2xl border px-10 py-2 drop-shadow text-green-700">ADD</button> */}
-    <AddToCartButton  info={info} resInfo={resInfo}/>
+    <img className="rounded-2xl w-full h-full aspect-square" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
+    <button className="bg-white absolute bottom-[-20px] left-1/2 -translate-x-1/2 text-lg font-bold rounded-2xl border px-5 py-2 drop-shadow text-green-700"><AddToCartButton  info={info} resInfo={resInfo}/></button>
+    {/* <AddToCartButton  info={info} resInfo={resInfo}/> */}
   </div>
  </div>  
 

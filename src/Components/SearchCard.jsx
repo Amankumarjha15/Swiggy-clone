@@ -51,9 +51,10 @@ function SearchCard({data :{card : {card : {info , restaurant : {info:resInfo}}}
 
 
             <div className="w-[35%] h-[75%] relative">
-            <img className="rounded-2xl w-[156px] h-[130px] aspect-square" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
+            <img className="rounded-2xl w-full h-[130px] aspect-square" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" + imageId} alt="" />
             {/* <AddToCartButton  info={info} resInfo={resInfo} /> */}
-            <AddToCartButton  info={info} resInfo={resInfo}/>
+            <button className="bg-white absolute bottom-[-20px] left-1/2 -translate-x-1/2 text-lg font-bold rounded-2xl border px-5 py-2 drop-shadow text-green-700"> <AddToCartButton  info={info} resInfo={resInfo}/></button>
+           
             </div>
           </div>
 
