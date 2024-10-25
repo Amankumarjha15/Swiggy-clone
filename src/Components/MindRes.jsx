@@ -65,7 +65,9 @@ function MindRes() {
         Data &&
         Data.map((restaurant,i) => (
           <div key={i} className="hover:scale-95 duration-200">
+          <Link to={`/ResturantMenu/${restaurant?.card?.card?.info?.id}`}>
             <ResturantCard {...restaurant?.card?.card} link={restaurant?.card?.card?.cta?.link}/>
+          </Link>
           </div>
         ))}
         </div>

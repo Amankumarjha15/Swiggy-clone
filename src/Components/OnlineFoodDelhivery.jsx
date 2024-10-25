@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ResturantCard from "./ResturantCard";
 import { useDispatch } from "react-redux";
 import { setFilterValue } from "../utils/filterSlice";
+import { Link } from "react-router-dom";
 
 function OnlineFoodDelhivery({ Data , title}) {
   // console.log(Data)
@@ -47,7 +48,9 @@ dispatch(setFilterValue(activeBtn))
         Data &&
         Data.map((restaurant,i) => (
           <div key={i} className="hover:scale-95 duration-200">
+            <Link to={`/ResturantMenu/${restaurant?.cta?.link.split("/").at(-1)}`}>
             <ResturantCard {...restaurant} link={restaurant?.cta?.link}/>
+            </Link>
           </div>
         ))}
         </div>

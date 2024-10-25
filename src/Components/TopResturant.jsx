@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState , useEffect } from 'react';
 import ResturantCard from './ResturantCard';
+import { Link } from 'react-router-dom';
 
 function TopResturant({Data =[] , title}) {
   // console.log(Data)
@@ -62,7 +63,9 @@ function TopResturant({Data =[] , title}) {
               <p className='line-clamp-1 text-black/60 font-medium'>{restaurant?.info?.cuisines?.join(" , ")}</p>
               <p>{restaurant?.info?.locality}</p>
           </div> */}
+          <Link to={`/ResturantMenu/${restaurant?.cta?.link?.split("/").at(-1)}`}>
           <ResturantCard {...restaurant} link={restaurant?.cta?.link}/>
+          </Link>
 
       </div>
                 ))

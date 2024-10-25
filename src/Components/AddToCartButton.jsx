@@ -31,7 +31,6 @@ function AddToCartButton({info , resInfo}) {
           
             dispatch(addToCart({info , resInfo}))
             toast.success("Food Added To Cart")
-            setAdded(info)
           } else {
             toast.error("Order Food From  " + resInfoLocalStorage.name + "  Only")
             setdiffRes((prev)=>!prev)
