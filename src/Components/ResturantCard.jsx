@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function ResturantCard(restaurant) {
+  // console.log(restaurant)
   // console.log(restaurant?.link?.split("/"))
   return (
     <Link to={`/ResturantMenu/${restaurant?.link?.split("/").at(-1)}`}>

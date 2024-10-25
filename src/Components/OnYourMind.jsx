@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 function OnYourMind({Data}) {
     // const [Data,setData] = useState([]);
@@ -42,7 +43,11 @@ function OnYourMind({Data}) {
                 {
                     Data &&
                     Data.map((item)=>(
-                        <img key={item.id} className='w-40' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/${item.imageId}`} alt="" />
+                        <Link to={`/OnMindRestaurant/${item?.action?.link?.split("/").at(-1)}`} key={item.id}>
+                        <div className='w-40'>
+                        <img  className='w-40' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/${item.imageId}`} alt="" />
+                        </div>
+                        </Link>
                     ))
                 }
             </div>

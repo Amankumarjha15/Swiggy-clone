@@ -38,7 +38,7 @@ function Search() {
     const finalData =(res?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards.filter(data => data?.card?.card?.info))
     setShimmer(false)
     setDishesData(finalData)
-    console.log(finalData)
+    // console.log(finalData)
   }
 
    let x = "";

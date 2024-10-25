@@ -8,6 +8,7 @@ import Cart from "./Components/Cart"
 import { useSelector } from "react-redux"
 import LoginPage from "./Components/LoginBtn"
 import Search from "./Components/Search"
+import MindRes from "./Components/MindRes"
 
 
 // const Search = lazy(()=>import("./Components/Search"))
@@ -45,6 +46,7 @@ function App() {
                                   <Route path="/" element={<Head/>}>
                                   <Route path="/" element={<Body/>}/>
                                   <Route path="/ResturantMenu/:id" element={<ResturantMenu/>}/>
+                                  <Route path="/OnMindRestaurant/:id" element={<MindRes/>}/>
                                   <Route path="/cart" element={<Cart/>}/>
                                   <Route path="/search" element={<Search/>}/>
                                   <Route path="*" element={<h1>Coming Soon .......</h1>}/>
