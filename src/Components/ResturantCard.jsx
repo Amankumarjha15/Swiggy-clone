@@ -5,7 +5,7 @@ function ResturantCard(restaurant) {
   // console.log(restaurant?.link?.split("/"))
   return (
     <Link to={`/ResturantMenu/${restaurant?.link?.split("/").at(-1)}`}>
-      <div className="min-w-[250px] h-[182px] relative">
+      <div className="min-w-[295px] h-[182px] relative">
         <img
           className="w-full h-full object-cover rounded-2xl"
           src={
