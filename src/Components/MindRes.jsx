@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Coordinates } from '../context/contextApi';
 import ResturantCard from './ResturantCard';
 import { Link, useParams } from 'react-router-dom';
+import { OnmindShimmer } from './Shimmer';
 
 function MindRes() {
 
@@ -12,6 +13,7 @@ function MindRes() {
 
     const [Data, setData] = useState([])
     const [Title, setTitle] = useState([])
+    const [Shimmer, setShimmer] = useState(true)
 
 
     const {Coord : {lat , lng}} = useContext(Coordinates);
@@ -27,6 +29,7 @@ function MindRes() {
         
         let finalData =  (res?.data?.cards?.filter((data)=>data?.card?.card?.info))
         setData(finalData);
+        setShimmer(false)
         // console.log(finalData)
         
     }
@@ -39,16 +42,19 @@ function MindRes() {
     },[])
 
   return (
+    <>
     <div className='w-full'>
         <div className='w-[90%] xl:w-[80%]  mx-auto'>
-
+{
+    Shimmer ? <OnmindShimmer/> :
+    <>
             {
             Title&&
             <>
 
             <div className='mt-10'>
                 <Link to={"/"}>
-                <p>Home/{Title.title}</p>
+                <p className='font-semibold text-lg text-gray-600'>Home/{Title.title}</p>
                 </Link>
             </div>
             
@@ -72,12 +78,13 @@ function MindRes() {
         ))}
         </div>
       </div>
-
-
-
 }
+</>
+}
+
 </div>
   </div>
+  </>
   )
 }
 
